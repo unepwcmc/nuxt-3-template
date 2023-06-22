@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "vue/no-multiple-template-root": "off"
+  },
+  "extends": ["@nuxt/eslint-config", "plugin:prettier/recommended"]
+}

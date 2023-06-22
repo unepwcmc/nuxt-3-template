@@ -1,0 +1,27 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    "gkotas.restore-git-branch-tabs",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "ms-vsliveshare.vsliveshare",
+    "ms-vsliveshare.vsliveshare-audio",
+    "wmaurer.change-case",
+    "mikestead.dotenv",
+    "github.vscode-pull-request-github",
+    "redhat.vscode-yaml",
+    "bradlc.vscode-tailwindcss",
+    "idered.npm",
+    "samatech.postcss-vue",
+    "tabnine.tabnine-vscode",
+    "formulahendry.auto-close-tag",
+    "sdras.vue-vscode-snippets",
+    "christian-kohler.npm-intellisense",
+    "vue.volar",
+    "github.copilot"
+  ],
+  // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+  "unwantedRecommendations": []
+}
