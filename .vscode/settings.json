@@ -1,8 +1,9 @@
-{ 
+{
     "editor.codeActionsOnSave": {
       "source.fixAll": false,
-      "source.fixAll.eslint": true
-    },
+      "source.fixAll.eslint": true,
+      "source.fixAll.stylelint": true
+  },
   "stylelint.validate": ["vue", "css"],
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
