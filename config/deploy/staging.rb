@@ -5,8 +5,8 @@ set :branch, 'main'
 
 server 'new-web-supported-staging.linode.unep-wcmc.org', user: 'wcmc', roles: %w[app web db]
 
-# set :application, 'nuxt-3-example'
-set :server_name, 'nuxt-3-example-nuxt.web-supported-staging.linode.unep-wcmc.org'
+# set :application, 'nuxt-3-template'
+set :server_name, 'nuxt-3-template-nuxt.web-supported-staging.linode.unep-wcmc.org'
 set :sudo_user, 'wcmc'
 # set :app_port, '80'
 

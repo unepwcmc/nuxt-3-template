@@ -6,7 +6,7 @@ set :branch, 'main'
 server 'new-web-supported-production.linode.unep-wcmc.org', user: 'wcmc', roles: %w[app web db]
 
 # set :application, 'target-tracker-nuxt'
-set :server_name, 'nuxt-3-example.new-web-supported-production.linode.unep-wcmc.org'
+set :server_name, 'nuxt-3-template.new-web-supported-production.linode.unep-wcmc.org'
 set :sudo_user, 'wcmc'
 set :app_port, '80'
 
