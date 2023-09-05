@@ -11,6 +11,6 @@ export default defineEventHandler(() => {
     dir: '/mountains',
     path: '/mountains/mount-everest',
     slug: 'mount-everest',
-    updatedAt: '2020-12-11T15:40:35.000Z',
-  };
-});
+    updatedAt: '2020-12-11T15:40:35.000Z'
+  }
+})

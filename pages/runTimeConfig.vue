@@ -1,8 +1,8 @@
 <template>
-  <div></div>
+  <div />
 </template>
 <script setup lang="ts">
-const runtimeConfig = useRuntimeConfig();
+const runtimeConfig = useRuntimeConfig()
 
-// console.log(runtimeConfig);
+console.log(runtimeConfig)
 </script>

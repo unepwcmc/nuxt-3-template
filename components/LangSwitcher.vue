@@ -9,22 +9,22 @@
 </template>
 
 <script setup lang="ts">
-import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables';
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-const { locale, locales } = useI18n();
+const { locale, locales } = useI18n()
 const localeObj: ComputedRef<LocaleObject[]> = locales as ComputedRef<
   LocaleObject[]
->;
-const switchLocalePath = useSwitchLocalePath();
+>
+const switchLocalePath = useSwitchLocalePath()
 
 const availableLocales = computed(() => {
-  return localeObj.value.filter((i) => i.code !== locale.value);
-});
+  return localeObj.value.filter(i => i.code !== locale.value)
+})
 </script>
 
 <style lang="postcss" scoped>
 .ct-lang-switcher {
-  @apply flex  
+  @apply flex
     gap-4;
 }
 </style>

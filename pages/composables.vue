@@ -5,20 +5,20 @@
         randomNumber
       }}
     </h4>
-    <hr class="m-5" />
+    <hr class="m-5">
     <h4>
       Use Composiables inappropriately (without useState when return value can
       change): {{ RandomNumNoUseState }}
     </h4>
-    <hr class="m-5" />
+    <hr class="m-5">
     <h4>No need for useState if value does not change: {{ valueNoChange }}</h4>
   </div>
 </template>
 
 <script setup>
-const randomNumber = giveRandomNum();
-const RandomNumNoUseState = giveRandomNumNoUseState();
-const valueNoChange = staticValue();
+const randomNumber = giveRandomNum()
+const RandomNumNoUseState = giveRandomNumNoUseState()
+const valueNoChange = staticValue()
 </script>
 
 <style lang="scss" scoped></style>

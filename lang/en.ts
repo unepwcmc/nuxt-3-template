@@ -1,11 +1,11 @@
 export default defineI18nLocale((locale: string) => {
-  console.log(locale);
+  console.log(locale)
 
   return {
-    welcome: 'Welcome',
-  };
+    welcome: 'Welcome'
+  }
   // return $fetch(`/api/${locale}`)
-});
+})
 
 // or
 

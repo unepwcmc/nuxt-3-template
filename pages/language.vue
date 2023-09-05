@@ -7,14 +7,14 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'custom',
-});
+  layout: 'custom'
+})
 // const { locale } = useI18n();
 </script>
 
 <style lang="postcss" scoped>
 .pages-language {
-  @apply flex 
+  @apply flex
     flex-col
     gap-4;
 }

@@ -84,7 +84,9 @@ v-set
       >
         Pages slugs (Documentation)
       </NuxtLink>
-      <NuxtLink to="/users/type-admin/2"> (Example) </NuxtLink>
+      <NuxtLink to="/users/type-admin/2">
+        (Example)
+      </NuxtLink>
     </li>
     <li>
       <NuxtLink
@@ -93,7 +95,9 @@ v-set
       >
         layouts & Page Title (Documentation)
       </NuxtLink>
-      <NuxtLink to="/layout"> (Example) </NuxtLink>
+      <NuxtLink to="/layout">
+        (Example)
+      </NuxtLink>
     </li>
     <li>
       <NuxtLink
@@ -102,7 +106,9 @@ v-set
       >
         Composables (Documentation)
       </NuxtLink>
-      <NuxtLink to="/composables"> (Example) </NuxtLink>
+      <NuxtLink to="/composables">
+        (Example)
+      </NuxtLink>
     </li>
     <li>
       <NuxtLink
@@ -111,7 +117,9 @@ v-set
       >
         Plugins/helpers (Documentation)
       </NuxtLink>
-      <NuxtLink to="/pluginpage"> (Example) </NuxtLink>
+      <NuxtLink to="/pluginpage">
+        (Example)
+      </NuxtLink>
     </li>
     <li class="flex gap-4">
       <NuxtLink
@@ -121,8 +129,8 @@ v-set
         Middleware (Documentation)
       </NuxtLink>
       <NuxtLink to="/users/type-admin/middleware">
-        -abortNavigation(Example)</NuxtLink
-      >
+        -abortNavigation(Example)
+      </NuxtLink>
       <NuxtLink to="/users/type-author/middleware">
         -Allow to visit the page (Example)
       </NuxtLink>
@@ -138,7 +146,9 @@ v-set
         Client Only in components filenames (Documentation)
       </NuxtLink>
 
-      <NuxtLink to="/clientrender"> -Client Side Rendering(Example) </NuxtLink>
+      <NuxtLink to="/clientrender">
+        -Client Side Rendering(Example)
+      </NuxtLink>
 
       <NuxtLink to="/serversiderender">
         -Server Side Rendering(Example)
@@ -148,9 +158,12 @@ v-set
       <NuxtLink
         to="https://nuxt.com/docs/getting-started/state-management#using-third-party-libraries"
         target="_blank"
-        >Pinia to replace vuex (Documentation)</NuxtLink
       >
-      <NuxtLink to="/store"> (Example) </NuxtLink>
+        Pinia to replace vuex (Documentation)
+      </NuxtLink>
+      <NuxtLink to="/store">
+        (Example)
+      </NuxtLink>
     </li>
     <li>
       <NuxtLink
@@ -160,15 +173,20 @@ v-set
         Nuxt can be used as an endpoints provider (can be used lightly)
         (Documentation)
       </NuxtLink>
-      <NuxtLink to="/endpoint">(Example)</NuxtLink>
+      <NuxtLink to="/endpoint">
+        (Example)
+      </NuxtLink>
     </li>
     <li>
       <NuxtLink
         to="https://v8.i18n.nuxtjs.org/getting-started/basic-usage"
         target="_blank"
-        >Use i18n (Documentation)
+      >
+        Use i18n (Documentation)
       </NuxtLink>
-      <NuxtLink to="/language">(Example)</NuxtLink>
+      <NuxtLink to="/language">
+        (Example)
+      </NuxtLink>
     </li>
   </ul>
 </template>

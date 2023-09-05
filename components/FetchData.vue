@@ -30,34 +30,34 @@
 /* Use fetch is equivalent of useAsyncData + $fetch */
 const { data: users } = useAsyncData('lastname', () => {
   const fetchReturn = $fetch('https://random-data-api.com/api/v2/users', {
-    query: { size: 1 },
-  });
-  return fetchReturn;
-});
+    query: { size: 1 }
+  })
+  return fetchReturn
+})
 
 /* Use fetch to call API */
 const {
   data: userLastname,
   pending,
   error,
-  refresh,
+  refresh
 } = useFetch('https://random-data-api.com/api/v2/users', {
-  onRequest({ request, options }) {
+  onRequest ({ request, options }) {
     // Set the request headers
     // options.headers["customHeader"] = "value";
   },
-  onRequestError({ request, options, error }) {
+  onRequestError ({ request, options, error }) {
     // Handle the request errors
   },
-  onResponse({ request, response, options }) {
+  onResponse ({ request, response, options }) {
     // Process the response data
   },
-  onResponseError({ request, response, options }) {
+  onResponseError ({ request, response, options }) {
     // Handle the response errors
   },
-  pick: ['last_name'],
-});
+  pick: ['last_name']
+})
 
 /* Use Nuxt (Nitro) as an API Provider */
-const { data: nuxtServerNitroReturn } = useFetch('/api/nuxtServer');
+const { data: nuxtServerNitroReturn } = useFetch('/api/nuxtServer')
 </script>

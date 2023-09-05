@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 definePageMeta({
-  middleware: ['redirect-me'],
-});
-const route = useRoute();
+  middleware: ['redirect-me']
+})
+const route = useRoute()
 </script>
 
 <style lang="scss" scoped></style>
