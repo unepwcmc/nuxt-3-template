@@ -1,8 +1,8 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useMainCompositionStore = defineStore("MainComposition", () => {
+export const useMainCompositionStore = defineStore('MainComposition', () => {
   const compostionLikes = ref<number>(1000);
-  const compostionName: string = ref<string>("Composition API");
+  const compostionName: string = ref<string>('Composition API');
 
   function addOneforComposition() {
     compostionLikes.value++;

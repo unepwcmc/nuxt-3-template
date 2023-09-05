@@ -1,6 +1,18 @@
 {
+  "extends": ["@nuxtjs/eslint-config-typescript"],
   "rules": {
-    "vue/no-multiple-template-root": "off"
-  },
-  "extends": ["@nuxt/eslint-config", "plugin:prettier/recommended"]
+    "import/first": "off",
+    "vue/no-multiple-template-root": "off",
+    "@typescript-eslint/no-var-requires": "off"
+    // "no-console": [
+    //   "error",
+    //   {
+    //     "allow": ["warn", "error"]
+    //   }
+    // ],
+    // "vue/no-v-html": 0,
+    // "vue/multi-word-component-names": 0,
+    // "vue/no-v-text-v-html-on-component": 0,
+    // "invalid-first-character-of-tag-name": 0
+  }
 }

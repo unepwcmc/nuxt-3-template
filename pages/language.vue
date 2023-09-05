@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "custom",
+  layout: 'custom',
 });
 // const { locale } = useI18n();
 </script>

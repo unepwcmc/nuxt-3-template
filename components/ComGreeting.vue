@@ -12,7 +12,7 @@
 
 /* add types and default value to props */
 defineProps({
-  title: { type: String, default: "Hi" },
+  title: { type: String, default: 'Hi' },
   showBorder: { type: Boolean, default: false },
 });
 </script>

@@ -1,8 +1,8 @@
-export default defineI18nLocale(async (locale: string) => {
+export default defineI18nLocale((locale: string) => {
   console.log(locale);
 
   return {
-    welcome: "Welcome",
+    welcome: 'Welcome',
   };
   // return $fetch(`/api/${locale}`)
 });

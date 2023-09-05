@@ -1,11 +1,8 @@
-{
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "editor.rulers": [80, 120],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
-  },
+{ 
+    "editor.codeActionsOnSave": {
+      "source.fixAll": false,
+      "source.fixAll.eslint": true
+    },
   "stylelint.validate": ["vue", "css"],
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
@@ -14,6 +11,5 @@
   "typescript.validate.enable": false,
   "editor.quickSuggestions": {
     "strings": true
-  },
-  "editor.formatOnSave": true
+  }
 }

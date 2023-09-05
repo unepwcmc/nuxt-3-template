@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useMainStore } from "@/store/main";
-import { useMainCompositionStore } from "@/store/mainComposition";
+import { storeToRefs } from 'pinia';
+import { useMainStore } from '@/store/main';
+import { useMainCompositionStore } from '@/store/mainComposition';
 
 /* The pinia store was written in optional API */
 const mainStore = useMainStore();

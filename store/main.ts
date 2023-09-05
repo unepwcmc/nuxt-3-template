@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 /* We don't need mutation in Pinia, it is replaced by action */
-export const useMainStore = defineStore("main", {
+export const useMainStore = defineStore('main', {
   state: () => ({
     likes: 0,
-    name: "Optional API",
+    name: 'Optional API',
   }),
 
   getters: {

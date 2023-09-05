@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { LocaleObject } from "@nuxtjs/i18n/dist/runtime/composables";
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables';
 
 const { locale, locales } = useI18n();
 const localeObj: ComputedRef<LocaleObject[]> = locales as ComputedRef<

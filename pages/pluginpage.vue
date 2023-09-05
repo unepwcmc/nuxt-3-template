@@ -1,7 +1,7 @@
 <template>
   <h4>
     Greeting helper/function in plugin:
-    {{ $greetings("Yue-Long") }}
+    {{ $greetings('Yue-Long') }}
   </h4>
   <hr class="m-5" />
   <h4>Use composable function in Plugin</h4>

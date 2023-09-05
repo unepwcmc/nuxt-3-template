@@ -1,21 +1,21 @@
 module.exports = {
-  customSyntax: "postcss-html",
+  customSyntax: 'postcss-html',
   extends: [
-    "stylelint-config-standard",
-    "stylelint-config-standard-vue",
-    "stylelint-config-tailwindcss",
+    'stylelint-config-standard',
+    'stylelint-config-standard-vue',
+    'stylelint-config-tailwindcss',
   ],
-  plugins: ["@namics/stylelint-bem"],
+  plugins: ['@namics/stylelint-bem'],
   // add your custom config here
   // https://stylelint.io/user-guide/configure
   rules: {
-    "function-no-unknown": null,
-    "no-descending-specificity": null,
-    "plugin/stylelint-bem-namics": {
+    'function-no-unknown': null,
+    'no-descending-specificity': null,
+    'plugin/stylelint-bem-namics': {
       namespaces: [
-        "ct-",
-        "layout-",
-        "pages-",
+        'ct-',
+        'layout-',
+        'pages-',
         //   'nuxt-link-',
         //   'mapboxgl-',
         //   'slick-',
@@ -26,11 +26,11 @@ module.exports = {
       patternPrefixes: [],
       helperPrefixes: [],
     },
-    "selector-class-pattern": null,
-    "selector-pseudo-class-no-unknown": [
+    'selector-class-pattern': null,
+    'selector-pseudo-class-no-unknown': [
       true,
       {
-        ignorePseudoClasses: ["deep"],
+        ignorePseudoClasses: ['deep'],
       },
     ],
   },

@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts" setup>
-const title = ref<string>("Hi!");
-const titleWithoutActive: string = "Without ref wrapper";
+const title = ref<string>('Hi!');
+const titleWithoutActive: string = 'Without ref wrapper';
 
 const computedVariable = computed((): Boolean => {
   return !!title.value;
@@ -43,27 +43,27 @@ const computedVariable = computed((): Boolean => {
     ** You do not need to have .value in template
  
 */
-console.log("Access a state without .value:", title);
-console.log("Access a state with .value:", title.value);
+console.log('Access a state without .value:', title);
+console.log('Access a state with .value:', title.value);
 
 /* An example of using a function */
-const currentDateTime = ref("");
+const currentDateTime = ref('');
 function showDateTime(): void {
   currentDateTime.value = Date();
 }
 
 /* The example of using watch */
 watch(title, (value, oldValue) => {
-  console.log("Watch Title:", `New: ${value}`, `Old: ${oldValue}`);
+  console.log('Watch Title:', `New: ${value}`, `Old: ${oldValue}`);
 });
 
 /* Please notice the lifecycle order */
-console.log("Setup");
+console.log('Setup');
 onBeforeMount(() => {
-  console.log("onBeforeMount");
+  console.log('onBeforeMount');
 });
 onMounted(() => {
-  console.log("onMounted");
+  console.log('onMounted');
 });
 </script>
 
