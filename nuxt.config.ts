@@ -1,14 +1,76 @@
-const API_ENDPOINT = process.env.RAILS_ENDPOINT
-const DEV_PORT = process.env.DEV_PORT || '8080'
+const RAILS_API_SERVER = process.env.RAILS_API_SERVER
 const SITE_TITLE = process.env.SITE_TITLE || ''
 const SITE_DESCRIPTION = process.env.SITE_DESCRIPTION || ''
+const NUXT_SERVER = process.env.HOST
+const PRODUCTION_MODE = process.env.NODE_ENV === 'production'
+
+if (!RAILS_API_SERVER) {
+  throw new Error('RAILS_API_SERVER Not Provided!!!!')
+}
+console.log('NUXT_SERVER', NUXT_SERVER)
+if (!NUXT_SERVER) {
+  let errorMsg = 'You are in development mode. However, development server path is not detected! Please configure your environment'
+  if (PRODUCTION_MODE) { errorMsg = 'You are in production mode. However, production server path is not detected! Please configure your environment' }
+  throw new Error(errorMsg)
+}
+const WCMCUSERMANAGEMENTCONFIG = {
+  auth: {
+    baseURL: NUXT_SERVER,
+    isEnabled: true,
+    provider: {
+      type: 'authjs'
+    },
+    globalAppMiddleware: {
+      isEnabled: true,
+      allow404WithoutAuth: true
+    }
+  },
+  /*
+    You will need authPages otherwise Nuxt Auth will use their default sign in/out pages (If that is what you want then you don't need to define this)
+    https://sidebase.io/nuxt-auth/application-side/custom-sign-in-page#configure-authjs-to-redirect-to-the-custom-sign-in-page
+  */
+
+  enviromentVariables: {
+    /*
+      for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
+      mount WcmcUserManager::Engine, at: "/user_management"
+      is inserted in routes.rb
+      whatever is put after 'at:' will be matched up here as the auth API path
+    */
+    RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
+    NUXT_SECRET: process.env.NUXT_SECRET,
+    AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
+    AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
+    AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID,
+    USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER
+  },
+  enviromentVariablesPublic: {
+    AUTH_PAGES: {
+      /**
+       * Change the default behavior to use `/sign-in` as the path for the sign-in page
+       * see https://next-auth.js.org/configuration/pages for all possiable pages (FYI, Nuxt-auth was created based on Next-auth)
+       * */
+      signIn: '/sign-in',
+      signOut: '/sign-out',
+      /**
+       * error page should be same as sign-in as it will be returning to sign-in page with error message
+       * It will look something like this when an error occured during sign in (You should only see this when using Azure login) -> localhost:8080/sign-in?error=1-0-1
+       * */
+      error: '/sign-in',
+
+      /*  The above are used by nuxt-auth so please follow the official documentation for setup
+            - The following ones are used in components so you can give options that you normally use in 'to' props <NuxtLink :to=" "/>
+              MAKE SURE NO localePath!!! I will apply localePath for you! Use passwordReset: { name: 'password-reset' } not passwordReset: localePath({ name: 'pameassessment' })
+            - If passwordReset is not present then you will not see this option in the sign in page and we will not register ResetPassword component which means
+            you cannot use <ResetPassword> component
+         */
+      passwordReset: { name: 'password-reset' } // Or /password-reset
+    }
+  }
+}
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  devServer: {
-    port: DEV_PORT
-  },
-
   app: {
     // https://nuxt.com/docs/getting-started/seo-meta#title-template
     head: {
@@ -18,7 +80,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           hid: 'description',
-          name: 'description',
+          name: SITE_TITLE,
           content: SITE_DESCRIPTION
         },
         { name: 'format-detection', content: 'telephone=no' }
@@ -36,7 +98,7 @@ export default defineNuxtConfig({
       description: SITE_DESCRIPTION,
       author: 'WCMC'
     },
-    disable: process.env.NODE_ENV === 'development',
+    disable: !NUXT_SERVER,
     register: true,
     scope: '/',
     dest: 'public',
@@ -45,13 +107,29 @@ export default defineNuxtConfig({
   },
   modules: [
     '@vite-pwa/nuxt',
-    '@nuxtjs/i18n',
-    '@nuxtjs/tailwindcss',
+    '@nuxt/test-utils/module',
     '@nuxtjs/stylelint-module',
-    '@sidebase/nuxt-auth',
-    '@pinia/nuxt'
+    ['@nuxtjs/eslint-module', { fix: true }],
+    ['@pinia/nuxt', { disableVuex: false }],
+    '@formkit/nuxt',
+    // 'wcmc_user_management'
+    // ['../src/module', WCMCUSERMANAGEMENTCONFIG],
+    /*
+        Make sure wcmc_user_management module is
+        - before '@nuxtjs/tailwindcss' Otherwise tailwind config in the module gets ignored and tailwind will not work properly for the module
+        - before '@nuxtjs/i18n' as the module will hook up the needed configs when Nuxt registers @nuxtjs/i18n
+
+    */
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n'
   ],
+  formkit: {
+    // https://github.com/formkit/formkit/issues/995
+    autoImport: false,
+    configFile: './formkit/formkit.config.ts'
+  },
   i18n: {
+    strategy: 'prefix',
     experimental: {
       jsTsFormatResource: true
     },
@@ -60,14 +138,9 @@ export default defineNuxtConfig({
         name: 'English',
         code: 'en',
         file: 'en.ts'
-      },
-      {
-        name: 'Traditonal Chinese',
-        code: 'tw',
-        file: 'tw.json'
       }
     ],
-    // lazy: true,
+    lazy: true,
     langDir: 'lang',
     defaultLocale: 'en'
   },
@@ -79,47 +152,18 @@ export default defineNuxtConfig({
     injectPosition: 'first',
     viewer: true
   },
-
-  stylelint: {
-    /* module options */
+  build: {
+    // postcss: {
+    //   plugins: {
+    //     'postcss-import': {}
+    //   }
+    // },
+    plugins: {},
+    transpile: ['@formkit/vue']
   },
-  runtimeConfig: {
-    // The private keys which are only available server-side
-    apiSecret: '123',
-    // Keys within public are also exposed client-side
-    public: {
-      apiBase: '/api'
-    }
-  },
+  runtimeConfig: {},
   experimental: {
     componentIslands: true
   },
-
-  // #TODO Not working yet
-  auth: {
-    // The module is enabled. Change this to disable the module
-    isEnabled: false,
-    // The origin is set to the development origin. Change this when deploying to production by setting `origin` in this config before build-time or by exporting `AUTH_ORIGIN` by running `export AUTH_ORIGIN=...`
-    // origin: 'http://localhost:3000',
-
-    // The base path to the authentication endpoints. Change this if you want to add your auth-endpoints at a non-default location
-    basePath: '/api/auth',
-    // Whether to periodically refresh the session. Change this to `true` for a refresh every seconds or set this to a number like `5000` for a refresh every 5000 milliseconds (aka: 5 seconds)
-    enableSessionRefreshPeriodically: false,
-    // Whether to refresh the session whenever a window focus event happens, i.e, when your user refocuses the window. Set this to `false` to turn this off
-    enableSessionRefreshOnWindowFocus: true,
-    // Whether to add a global authentication middleware that will protect all pages without exclusion
-    globalAppMiddleware: false,
-    // Select the default-provider to use when `signIn` is called. Setting this here will also effect the global middleware behavior: E.g., when you set it to `github` and the user is unauthorized, they will be directly forwarded to the Github OAuth page instead of seeing the app-login page
-    defaultProvider: undefined,
-    // Whether to automatically set the callback url to the page the user tried to visit when the middleware stopped them. This is useful to disable this when using the credentials provider, as it does not allow a `callbackUrl`. Setting this to a string-value will result in that being used as the callbackUrl path.
-    addDefaultCallbackUrl: true,
-    // Configuration of the global auth-middleware (only applies if you set `globalAppMiddleware: true` above!)
-    globalMiddlewareOptions: {
-      // Whether to allow access to 404 pages without authentication. Set this to `false` to force users to sign-in before seeing `404` pages. Setting this to false may lead to vue-router problems (as the target page does not exist)
-      allow404WithoutAuth: true,
-      // Whether to automatically set the callback url to the page the user tried to visit when the middleware stopped them. This is useful to disable this when using the credentials provider, as it does not allow a `callbackUrl`. Setting this to a string-value will result in that being used as the callbackUrl path. Note: You also need to set the global `addDefaultCallbackUrl` setting to `false` if you want to fully disable this for the global middleware.
-      addDefaultCallbackUrl: true
-    }
-  }
+  alias: {}
 })

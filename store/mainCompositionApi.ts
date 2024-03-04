@@ -1,3 +1,4 @@
+// By default creating a pinia store in composition structure is recommended
 import { defineStore } from 'pinia'
 
 export const useMainCompositionStore = defineStore('MainComposition', () => {

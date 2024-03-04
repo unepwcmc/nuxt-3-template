@@ -1,0 +1,51 @@
+/*  - Anything you define here then you will be able to use it as a tailwind name in vue component
+    - Normally UX/UI Desiger has a set of font designes and then you can define them here and use them in your component
+    - Search body-text-1 in this folder to see how this is used in vue component
+    - This file is precompiled in tailwind.config.ts
+    - If you change any elements in this file and you do not see the changes then please remove all compiled i,e .nuxt folder and restart server to trigger compile in tailwind.config.ts
+*/
+
+.body-text-1 {
+  /* mobile tablet desktop */
+  @apply text-sm not-italic font-semibold md:text-base lg:text-base;
+}
+.button {
+  @apply
+    bg-theme-primary
+    hover:bg-theme-secondary
+    text-white
+    text-center
+    hover:border-theme-primary
+    font-bold
+    text-[16px]
+    w-[69px]
+    h-[36px]
+    md:w-[117px]
+    md:h-[43px]
+    p-[6px]
+    md:py-[12px]
+    md:px-[36px];
+
+  &--disabled{
+      @apply
+      bg-[#d9d9d9]
+      hover:bg-[#d9d9d9]
+      cursor-not-allowed;
+    }
+}
+
+/* Mainly the style used for formkit components look into ~/formkit/tailwind-formkit.ts for more details */
+.text {
+  &-input {
+    @apply w-full h-16 border border-solid border-black p-2 rounded-[0.3125rem];
+    &--longer {
+      @apply w-full h-[6.0625rem] border border-solid border-black p-2 rounded-[0.3125rem];
+    }
+  }
+  &-wrapper {
+    @apply flex flex-col gap-4;
+  }
+  &-red-500{
+    @apply text-red-500;
+  }
+}

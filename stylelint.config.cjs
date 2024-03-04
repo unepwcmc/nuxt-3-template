@@ -3,7 +3,7 @@ module.exports = {
   extends: [
     'stylelint-config-standard',
     'stylelint-config-standard-vue',
-    'stylelint-config-tailwindcss',
+    'stylelint-config-tailwindcss'
   ],
   plugins: ['@namics/stylelint-bem'],
   // add your custom config here
@@ -15,23 +15,18 @@ module.exports = {
       namespaces: [
         'ct-',
         'layout-',
-        'pages-',
-        //   'nuxt-link-',
-        //   'mapboxgl-',
-        //   'slick-',
-        //   'sv-',
-        //   'transition-',
-        //   'page-'
+        'page-',
+        'wcmc-ct-'
       ],
       patternPrefixes: [],
-      helperPrefixes: [],
+      helperPrefixes: []
     },
     'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': [
       true,
       {
-        ignorePseudoClasses: ['deep'],
-      },
-    ],
-  },
-};
+        ignorePseudoClasses: ['deep']
+      }
+    ]
+  }
+}

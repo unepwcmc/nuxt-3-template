@@ -1,4 +1,12 @@
-export default defineEventHandler(() => {
+/**
+ * Nuxt can now be used like a backend server
+ * The following handles All http methods (get,post,put etc...) for the api path  http://localhost:xxxx/api/example
+ */
+
+export default defineEventHandler((event) => {
+  // You can do anything like a backend server here
+  console.log(event)
+
   return {
     title: 'Mount Everest',
     description:

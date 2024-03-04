@@ -1,19 +1,29 @@
 const fs = require('fs')
 const plugin = require('tailwindcss/plugin')
 const postcssJs = require('postcss-js')
-const screens = require('./tailwind-breakpoints.config.js')
+const FormKitVariants = require('@formkit/themes/tailwindcss')
+const screens = require('./tailwind/tailwind-breakpoints.config')
+const theme = require('./tailwind/theme')
+
 module.exports = {
-  content: ['./src/**/*.{vue,ts,js}'],
+  mode: 'jit',
+  content: [
+    './components/**/*.{vue,ts}',
+    './pages/**/*.vue',
+    // you will need the following to be here if you plan to have global styles for formkit elements
+    './formkit/**/*.ts',
+    './formkit/tailwind-formkit.ts'
+  ],
   theme: {
     screens,
     extend: {
       colors: {
-        primary: '#133568',
-        secondary: '#00AAF1'
+        theme
       }
     }
   },
   plugins: [
+    FormKitVariants,
     function ({ addBase, theme }) {
       const screens = theme('screens', {})
       const breakpoints = Object.keys(screens)
@@ -33,7 +43,8 @@ module.exports = {
       })
     },
     plugin(function ({ addComponents, postcss }) {
-      const css = fs.readFileSync('./assets/css/components.pcss', 'utf-8')
+      // Styles defined in extended-tailwind-styles.pcss will be precompiled while launching nuxt server
+      const css = fs.readFileSync('./assets/css/extended-tailwind-styles.pcss', 'utf-8')
       addComponents(postcssJs.objectify(postcss.parse(css)))
     })
   ]

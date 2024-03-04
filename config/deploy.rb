@@ -5,8 +5,8 @@ set :application, 'nuxt-3-template'
 set :repo_url, 'git@github.com:unepwcmc/nuxt-3-template.git'
 
 set :nvm_type, :user # or :system, depends on your nvm setup
-set :nvm_node, 'v19.9.0' #If changing version here also change version in ecosystem.config.cjs /home/wcmc/.nvm/versions/node/vxx.x.x/bin/node
-set :node_version_for_pm2, 'v16.8.0' #don't touch unless you want to use a pm2 that's sitting in another node folder /home/wcmc/.nvm/versions/node/vxx.x.x/bin/pm2
+set :nvm_node, 'v19.9.0' #TODO This can be upgraded to the latest node version (v.21 as 04Mar2024) Frontend dev please coordinate with devOps #If changing version here also change version in ecosystem.config.cjs /home/wcmc/.nvm/versions/node/vxx.x.x/bin/node
+set :node_version_for_pm2, 'v16.8.0' # Don't change this unless you want to use a pm2 that's sitting in another node folder /home/wcmc/.nvm/versions/node/vxx.x.x/bin/pm2, asl devOps for more details
 set :nvm_map_bins, %w[node npm yarn]
 
 set :yarn_flags, '--silent --no-progress'
@@ -29,7 +29,8 @@ namespace :deploy do
   desc 'build_nuxt_app & yarn install/build'
   task :build_nuxt_app do
     on roles(:app) do
-      execute "cd #{release_path} && . ~/.nvm/nvm.sh && nvm use #{fetch(:nvm_node)} && yarn install && yarn build"
+      #TODO This line is working but needs improvement !!!!!!!
+      execute "cd #{release_path} && . ~/.nvm/nvm.sh && node -v && nvm use #{fetch(:nvm_node)} && yarn install && yarn build"
     end
   end
 end

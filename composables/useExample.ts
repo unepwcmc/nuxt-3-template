@@ -9,4 +9,10 @@ function giveRandomNumNoUseState (): number {
 function staticValue (): string {
   return '12345678'
 }
-export { giveRandomNum, giveRandomNumNoUseState, staticValue }
+export function useExample () {
+  return {
+    giveRandomNum,
+    giveRandomNumNoUseState,
+    staticValue
+  }
+}

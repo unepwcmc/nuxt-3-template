@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 set :stage, :staging
-set :branch, 'main'
+set :branch, 'develop'
 
 server 'new-web-supported-staging.linode.unep-wcmc.org', user: 'wcmc', roles: %w[app web db]
 
