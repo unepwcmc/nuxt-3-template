@@ -76,7 +76,7 @@ describe('Login Page', async () => {
 
   test('Login Successfully', async () => {
     const signInPageObject = await signInPage()
-    const { usernamePasswordSubmitButton, emailSignInForm, page, pause } = signInPageObject
+    const { usernamePasswordSubmitButton, emailSignInForm, pause } = signInPageObject
     await fillInUsernamePassword(signInPageObject)
     await emailSignInForm.click()
     // const responsePromise = page.waitForResponse('http://localhost:8080/api/auth/providers')

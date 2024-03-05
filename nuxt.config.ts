@@ -7,7 +7,6 @@ const PRODUCTION_MODE = process.env.NODE_ENV === 'production'
 if (!RAILS_API_SERVER) {
   throw new Error('RAILS_API_SERVER Not Provided!!!!')
 }
-console.log('NUXT_SERVER', NUXT_SERVER)
 if (!NUXT_SERVER) {
   let errorMsg = 'You are in development mode. However, development server path is not detected! Please configure your environment'
   if (PRODUCTION_MODE) { errorMsg = 'You are in production mode. However, production server path is not detected! Please configure your environment' }
@@ -15,7 +14,6 @@ if (!NUXT_SERVER) {
 }
 const WCMCUSERMANAGEMENTCONFIG = {
   auth: {
-    baseURL: NUXT_SERVER,
     isEnabled: true,
     provider: {
       type: 'authjs'
@@ -25,12 +23,10 @@ const WCMCUSERMANAGEMENTCONFIG = {
       allow404WithoutAuth: true
     }
   },
-  /*
-    You will need authPages otherwise Nuxt Auth will use their default sign in/out pages (If that is what you want then you don't need to define this)
-    https://sidebase.io/nuxt-auth/application-side/custom-sign-in-page#configure-authjs-to-redirect-to-the-custom-sign-in-page
-  */
-
-  enviromentVariables: {
+  config: {
+    enableAzureSignIn: true
+  },
+  enviromentVariablesPrivate: {
     /*
       for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
       mount WcmcUserManager::Engine, at: "/user_management"
@@ -45,6 +41,11 @@ const WCMCUSERMANAGEMENTCONFIG = {
     USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER
   },
   enviromentVariablesPublic: {
+    /*
+    You will need AUTH_PAGES otherwise Nuxt Auth will use their default sign in/out pages (If that is what you want then you don't need to define this)
+    https://sidebase.io/nuxt-auth/application-side/custom-sign-in-page#configure-authjs-to-redirect-to-the-custom-sign-in-page
+  */
+
     AUTH_PAGES: {
       /**
        * Change the default behavior to use `/sign-in` as the path for the sign-in page
@@ -60,7 +61,7 @@ const WCMCUSERMANAGEMENTCONFIG = {
 
       /*  The above are used by nuxt-auth so please follow the official documentation for setup
             - The following ones are used in components so you can give options that you normally use in 'to' props <NuxtLink :to=" "/>
-              MAKE SURE NO localePath!!! I will apply localePath for you! Use passwordReset: { name: 'password-reset' } not passwordReset: localePath({ name: 'pameassessment' })
+              MAKE SURE NO localePath!!! I çwill apply localePath for you! Use passwordReset: { name: 'password-reset' } not passwordReset: localePath({ name: 'pameassessment' })
             - If passwordReset is not present then you will not see this option in the sign in page and we will not register ResetPassword component which means
             you cannot use <ResetPassword> component
          */
@@ -98,7 +99,7 @@ export default defineNuxtConfig({
       description: SITE_DESCRIPTION,
       author: 'WCMC'
     },
-    disable: !NUXT_SERVER,
+    disable: !PRODUCTION_MODE,
     register: true,
     scope: '/',
     dest: 'public',
@@ -112,8 +113,8 @@ export default defineNuxtConfig({
     ['@nuxtjs/eslint-module', { fix: true }],
     ['@pinia/nuxt', { disableVuex: false }],
     '@formkit/nuxt',
-    // 'wcmc_user_management'
-    // ['../src/module', WCMCUSERMANAGEMENTCONFIG],
+    // '../wcmc_user_management/dist/module'
+    ['wcmc_user_management', WCMCUSERMANAGEMENTCONFIG],
     /*
         Make sure wcmc_user_management module is
         - before '@nuxtjs/tailwindcss' Otherwise tailwind config in the module gets ignored and tailwind will not work properly for the module
@@ -153,11 +154,15 @@ export default defineNuxtConfig({
     viewer: true
   },
   build: {
-    // postcss: {
-    //   plugins: {
-    //     'postcss-import': {}
-    //   }
-    // },
+    // Do not create a ~/postcss.config.cjs file it will not work with Nuxt, instead put the config here
+    postcss: {
+      plugins: {
+        'tailwindcss/nesting': {},
+        'postcss-import': {},
+        tailwindcss: {},
+        autoprefixer: {}
+      }
+    },
     plugins: {},
     transpile: ['@formkit/vue']
   },

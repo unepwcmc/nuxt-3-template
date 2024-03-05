@@ -9,9 +9,11 @@
       {{ toSignInOutText }}
     </NuxtLink>
     <hr>
-    {{ status }}
-    <hr>
-    {{ data }}
+    <div>
+      <code class="whitespace-normal" v-text="status" />
+      <hr>
+      <code class="whitespace-normal" v-text="data" />
+    </div>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ const toSignInOutText = computed(() => status.value === 'authenticated' ? 'Sign 
 
 <style scoped lang="postcss">
 .page-index {
-  @apply py-3 px-8 flex gap-3 items-center justify-between border-b-theme-grey-light border-b;
+  @apply py-3 px-8 flex flex-col gap-3 items-center justify-between border-b-theme-primary border-b;
 
   &__log-in-out {
     @apply button w-32;

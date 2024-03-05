@@ -9,7 +9,7 @@
 */
 export default {
   global: {
-    message: 'text-red-500' // in assets/extended-tailwind-styles.pcss
+    message: 'text-red-default-colour' // in assets/extended-tailwind-styles.pcss
   },
   select: {
     wrapper: 'text-wrapper', // in assets/extended-tailwind-styles.pcss

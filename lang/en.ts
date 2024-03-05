@@ -28,13 +28,13 @@ export default defineI18nLocale((locale: string) => {
     }
   }
   // You have to use deep merge. Don't use shallow merge otherwise some objects might be overwritten!
-  return merge(translations, defualtTranslations)
+  return merge(translations, defaultUserManagementTranslations)
 })
 
 function getDefaultUserManagementTranslations () {
   // get default translations from user management module
-  // useWcmcUserManagementTranslations is defined/registered alias in wcmc_user_management module
-  const { getUserManagementTranslations } = useWcmcUserManagementTranslations()
+  // useWcmcUserManagement is defined/registered alias in wcmc_user_management module
+  const { getUserManagementTranslations } = useWcmcUserManagement()
   return getUserManagementTranslations('en')
 }
 function fetchSomeTranslations (locale) {

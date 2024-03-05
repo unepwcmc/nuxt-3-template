@@ -10,3 +10,5 @@ dist
 .fleet
 .idea
 .stylelintcache
+.yalc/*
+yalc.lock
