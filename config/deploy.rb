@@ -5,7 +5,7 @@ set :application, 'nuxt-3-template'
 set :repo_url, 'git@github.com:unepwcmc/nuxt-3-template.git'
 
 set :nvm_type, :user # or :system, depends on your nvm setup
-set :nvm_node, 'v19.9.0' #TODO This can be upgraded to the latest node version (v.21 as 04Mar2024) Frontend dev please coordinate with devOps #If changing version here also change version in ecosystem.config.cjs /home/wcmc/.nvm/versions/node/vxx.x.x/bin/node
+set :nvm_node, 'v21.7.1' #TODO This can be upgraded to the latest node version (v.21 as 04Mar2024) Frontend dev please coordinate with devOps #If changing version here also change version in ecosystem.config.cjs /home/wcmc/.nvm/versions/node/vxx.x.x/bin/node
 set :node_version_for_pm2, 'v16.8.0' # Don't change this unless you want to use a pm2 that's sitting in another node folder /home/wcmc/.nvm/versions/node/vxx.x.x/bin/pm2, asl devOps for more details
 set :nvm_map_bins, %w[node npm yarn]
 

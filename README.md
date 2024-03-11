@@ -28,8 +28,8 @@ To mimic how production server starts the app
 ## Deployment
 - in project root folder
 - run ```bundle install```
-- run ``` bundle exec cap staging deploy``` - for staging server deployment
-- run ``` bundle exec cap production deploy``` - for production server deployment
+- run ```bundle exec cap staging deploy``` - for staging server deployment
+- run ```bundle exec cap production deploy``` - for production server deployment
 
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
