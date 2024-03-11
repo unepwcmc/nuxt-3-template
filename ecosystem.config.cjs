@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'nuxt-3-template',
-      script: '/home/wcmc/.nvm/versions/node/v19.9.0/bin/node ./.output/server/index.mjs', // If you change the node version here then please also change the version in ~/config/deploy.rb
+      script: '/home/wcmc/.nvm/versions/node/v21.7.1/bin/node ./.output/server/index.mjs', // If you change the node version here then please also change the version in ~/config/deploy.rb
       port: '8084', // This will be used to launch the server so it becomes http://localhost:8083 make sure the port is free in production server
       cwd: '/home/wcmc/nuxt-3-template/current/',
       exec_mode: 'cluster'
