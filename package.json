@@ -50,7 +50,7 @@
     "@formkit/inputs": "^1.4.0",
     "@formkit/nuxt": "^1.4.0",
     "@pinia/nuxt": "^0.5.1",
-    "@unep-wcmc/user-management": "0.0.1",
+ 
     "defu": "^6.1.4"
   }
 }

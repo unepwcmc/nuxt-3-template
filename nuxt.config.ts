@@ -93,7 +93,7 @@ export default defineNuxtConfig({
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/eslint-module', { fix: true }],
     ['@pinia/nuxt', { disableVuex: false }],
-    ['@unep-wcmc/user-management', WCMCUSERMANAGEMENTCONFIG],
+    // ['@unep-wcmc/user-management', WCMCUSERMANAGEMENTCONFIG],
     /*
       for @unep-wcmc/user-management
       - If you want to use '@nuxtjs/tailwindcss' make sure it is after @unep-wcmc/user-management module.
