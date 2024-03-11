@@ -41,30 +41,11 @@ const WCMCUSERMANAGEMENTCONFIG = {
     USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER
   },
   enviromentVariablesPublic: {
-    /*
-    You will need AUTH_PAGES otherwise Nuxt Auth will use their default sign in/out pages (If that is what you want then you don't need to define this)
-    https://sidebase.io/nuxt-auth/application-side/custom-sign-in-page#configure-authjs-to-redirect-to-the-custom-sign-in-page
-  */
-
     AUTH_PAGES: {
-      /**
-       * Change the default behavior to use `/sign-in` as the path for the sign-in page
-       * see https://next-auth.js.org/configuration/pages for all possiable pages (FYI, Nuxt-auth was created based on Next-auth)
-       * */
+      // Same as the path in ~/pages/*
       signIn: '/sign-in',
       signOut: '/sign-out',
-      /**
-       * error page should be same as sign-in as it will be returning to sign-in page with error message
-       * It will look something like this when an error occured during sign in (You should only see this when using Azure login) -> localhost:8080/sign-in?error=1-0-1
-       * */
       error: '/sign-in',
-
-      /*  The above are used by nuxt-auth so please follow the official documentation for setup
-            - The following ones are used in components so you can give options that you normally use in 'to' props <NuxtLink :to=" "/>
-              MAKE SURE NO localePath!!! I çwill apply localePath for you! Use passwordReset: { name: 'password-reset' } not passwordReset: localePath({ name: 'pameassessment' })
-            - If passwordReset is not present then you will not see this option in the sign in page and we will not register ResetPassword component which means
-            you cannot use <ResetPassword> component
-         */
       passwordReset: { name: 'password-reset' } // Or /password-reset
     }
   }
@@ -112,26 +93,23 @@ export default defineNuxtConfig({
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/eslint-module', { fix: true }],
     ['@pinia/nuxt', { disableVuex: false }],
-    '@formkit/nuxt',
-    // '../wcmc_user_management/dist/module'
-    ['wcmc_user_management', WCMCUSERMANAGEMENTCONFIG],
+    ['@unep-wcmc/user-management', WCMCUSERMANAGEMENTCONFIG],
     /*
-        Make sure wcmc_user_management module is
-        - before '@nuxtjs/tailwindcss' Otherwise tailwind config in the module gets ignored and tailwind will not work properly for the module
-        - before '@nuxtjs/i18n' as the module will hook up the needed configs when Nuxt registers @nuxtjs/i18n
-
+      for @unep-wcmc/user-management
+      - If you want to use '@nuxtjs/tailwindcss' make sure it is after @unep-wcmc/user-management module.
+      - @nuxtjs/i18n is required and to place after @unep-wcmc/user-management module
     */
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@formkit/nuxt' // You can comment this out if you don't plan to use formkit. It is a powerful/easy to use tool to simplyfy form elements. https://formkit.com/
   ],
   formkit: {
-    // https://github.com/formkit/formkit/issues/995
-    autoImport: false,
     configFile: './formkit/formkit.config.ts'
   },
   i18n: {
     strategy: 'prefix',
     experimental: {
+      // https://v8.i18n.nuxtjs.org/options/misc#experimental in oder to use lazy load for en.ts
       jsTsFormatResource: true
     },
     locales: [

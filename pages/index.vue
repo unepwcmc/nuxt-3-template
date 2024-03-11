@@ -5,8 +5,11 @@
       class="page-index__title"
       v-text="t('title')"
     />
-    <NuxtLink :to="toSignInOutLink" class="ct-header-default__log-in-out">
-      {{ toSignInOutText }}
+    <NuxtLink :to="toSignInOutLink">
+      <span
+        class="page-index__log-in-out"
+        v-text="toSignInOutText"
+      />
     </NuxtLink>
     <hr>
     <div>

@@ -4,20 +4,23 @@
  * - There are 2 ways to use this file see
  * - Only use this file When you want to change some of our module translations, Otherwise use enSimpleUsuage.ts instead.
  */
-
-import lodash from 'lodash'
-const { merge } = lodash // Don't do -> import lodash from 'lodash' , for some reason it gives an error
+import { defu } from 'defu'
 
 export default defineI18nLocale((locale: string) => {
   const defaultUserManagementTranslations = getDefaultUserManagementTranslations()
   /**
-   * If you would like to change translations then you can do this.
-   * In node_modules/wcmc_user_management module there is a file src/runtime/composables/translations.ts which has all options there
+   * If you would like to change translations for a module then you can do like this.
    */
-  defaultUserManagementTranslations.wcmcUserManagement.signIn.buttons.azureSignIn = 'WCMC Employee Sign In'
+  defaultUserManagementTranslations.wcmcModules.userManagement.signIn.buttons.azureSignIn = 'WCMC Employee Sign In'
   const translations = {
     title: 'WCMC Nuxt 3 Template',
     someTranslations: fetchSomeTranslations(locale), // Example of how you can use this
+    signIn: {
+      passwordReset: {
+        title: 'Do you need to reset your password?',
+        link: 'Password Reset'
+      }
+    },
     // These are not from rails so you can search in our wcmc created modules to see how they might be used, they must be defined here!
     apiErrorResponse: {
       '999-999-995': 'Method is not supported.', // (for devs, this is used in APIs created in Nuxt Server
@@ -28,12 +31,11 @@ export default defineI18nLocale((locale: string) => {
     }
   }
   // You have to use deep merge. Don't use shallow merge otherwise some objects might be overwritten!
-  return merge(translations, defaultUserManagementTranslations)
+  return defu(translations, defaultUserManagementTranslations)
 })
 
 function getDefaultUserManagementTranslations () {
-  // get default translations from user management module
-  // useWcmcUserManagement is defined/registered alias in wcmc_user_management module
+  // useWcmcUserManagement is defined/registered alias in @unep-wcmc/user-management module
   const { getUserManagementTranslations } = useWcmcUserManagement()
   return getUserManagementTranslations('en')
 }

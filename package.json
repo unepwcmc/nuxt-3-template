@@ -13,7 +13,7 @@
     "lint": "yarn lint:ts --fix && yarn lint:style --fix",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "install:wcmc_user_management": "yalc add wcmc_user_management && yarn install"
+    "install:local:@unep-wcmc/user-management": "yalc add @unep-wcmc/user-management && yarn install"
   },
   "devDependencies": {
     "@namics/stylelint-bem": "^9.0.0",
@@ -35,11 +35,11 @@
     "nuxt": "^3.5.2",
     "playwright": "1.42.0",
     "playwright-core": "^1.42.0",
-    "postcss-html": "1.5.0",
-    "postcss-import": "^15.1.0",
+    "postcss-html": "1.6.0",
+    "postcss-import": "^16.0.1",
     "stylelint": "^16.0.2",
     "stylelint-config-recommended-vue": "^1.4.0",
-    "stylelint-config-standard": "35.0.0",
+    "stylelint-config-standard": "36.0.0",
     "stylelint-config-standard-vue": "1.0.0",
     "stylelint-config-tailwindcss": "0.0.7",
     "typescript": "^5.3.3",
@@ -50,10 +50,7 @@
     "@formkit/inputs": "^1.4.0",
     "@formkit/nuxt": "^1.4.0",
     "@pinia/nuxt": "^0.5.1",
-    "lodash": "^4.17.21",
-    "wcmc_user_management": "file:.yalc/wcmc_user_management"
-  },
-  "resolutions": {
-    "jackspeak": "2.1.1"
+    "@unep-wcmc/user-management": "0.0.1",
+    "defu": "^6.1.4"
   }
 }

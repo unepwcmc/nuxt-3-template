@@ -1,0 +1,88 @@
+:deep(.page-sign-in__component) {
+  .wcmc-ct-user-management-sign-in {
+    &__panel {
+      @apply shrink-0 border rounded-lg border-solid border-black p-6 flex flex-col gap-3;
+    }
+
+    &__title {
+      @apply text-2xl;
+    }
+
+    &__container {
+      &--email-password-sign-in {
+        @apply flex flex-col gap-3;
+      }
+
+      &--azure-sign-in {
+      }
+    }
+
+    &__wrapper {
+      @apply text-wrapper;
+
+      &--email {
+      }
+
+      &--password {
+      }
+    }
+
+    &__input {
+      @apply text-input;
+
+      &--email {
+      }
+
+      &--password {
+      }
+    }
+    &__password-reset {
+      @apply flex gap-1;
+      &--title {
+      }
+      &--link {
+        @apply cursor-pointer text-blue-500 underline;
+        &:hover {
+          @apply text-blue-800;
+        }
+      }
+    }
+    &__message {
+      @apply text-red-600;
+
+      &--email-password-sign-in {
+      }
+
+      &--azureSignIn {
+      }
+
+      &--email {
+      }
+
+      &--password {
+      }
+    }
+
+    &__button {
+      @apply w-full flex items-center justify-center h-[3.75rem] shrink-0 rounded-[0.3125rem] bg-black text-white text-lg disabled:bg-gray-400 cursor-pointer disabled:cursor-not-allowed;
+
+      &--emailPasswordSignIn {
+      }
+
+      &--azureSignIn {
+      }
+    }
+
+    &__divider {
+      @apply w-full h-[0.05rem] bg-black;
+    }
+
+   
+  }
+  .wcmc-ct__overlay {
+    @apply relative;
+    &--busy {
+      @apply absolute h-full w-full z-50 bg-slate-200/50 top-0 right-0 bottom-0 left-0 rounded-lg;
+    }
+  }
+}
