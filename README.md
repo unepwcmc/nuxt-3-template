@@ -32,4 +32,5 @@ To mimic how production server starts the app
 - run ```bundle exec cap production deploy``` - for production server deployment
 
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Known Issues
+- We recommend you to read [known issues section](./doc/known-issues.md)
