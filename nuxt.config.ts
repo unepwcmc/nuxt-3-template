@@ -1,16 +1,10 @@
 const RAILS_API_SERVER = process.env.RAILS_API_SERVER
 const SITE_TITLE = process.env.SITE_TITLE || ''
 const SITE_DESCRIPTION = process.env.SITE_DESCRIPTION || ''
-const NUXT_SERVER = process.env.HOST
 const PRODUCTION_MODE = process.env.NODE_ENV === 'production'
 
 if (!RAILS_API_SERVER) {
   throw new Error('RAILS_API_SERVER Not Provided!!!!')
-}
-if (!NUXT_SERVER) {
-  let errorMsg = 'You are in development mode. However, development server path is not detected! Please configure your environment'
-  if (PRODUCTION_MODE) { errorMsg = 'You are in production mode. However, production server path is not detected! Please configure your environment' }
-  throw new Error(errorMsg)
 }
 
 export default defineNuxtConfig({
