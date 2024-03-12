@@ -31,6 +31,13 @@ To mimic how production server starts the app
 - run ```bundle exec cap staging deploy``` - for staging server deployment
 - run ```bundle exec cap production deploy``` - for production server deployment
 
+## Update envs on production server
+
+In Nuxt 3 when the server is ran in production mode, Nuxt 3 does NOT load env file so loading .env file will be the task inside [ecosystem.config.cjs](./ecosystem.config.cjs) and due to the nature of PM2 you MUST delete current app instace on PM2 and save the app instacne to make PM2 uses new environment variables you updated in .env
+- ```pm2 delete nuxt-3-template```
+- ```pm2 start ecosystem.config.cjs```
+- ```pm2 save```
+- Done
 
 ## Known Issues
 - We recommend you to read [known issues section](./doc/known-issues.md)

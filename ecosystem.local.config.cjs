@@ -10,8 +10,7 @@ module.exports = {
     {
       name: 'nuxt-3-template',
       script: './.output/server/index.mjs', // If you change the node version here then please also change the version in ~/config/deploy.rb
-      port: '8083', // This will be used to launch the server so it becomes http://localhost:8083 make sure the port is free in production server
-      exec_mode: 'cluster'
+      port: '8083' // This will be used to launch the server so it becomes http://localhost:8083 make sure the port is free in production server
     }
   ]
 }
