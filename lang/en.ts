@@ -35,7 +35,7 @@ export default defineI18nLocale((locale: string) => {
 })
 
 function getDefaultUserManagementTranslations () {
-  // useWcmcUserManagement is defined/registered alias in @unep-wcmc/user-management module
+  // useWcmcUserManagement is defined/registered alias in @unepwcmc/user-management module
   const { getUserManagementTranslations } = useWcmcUserManagement()
   return getUserManagementTranslations('en')
 }

@@ -3,7 +3,7 @@
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Quick Start
-- ```npm login``` and use unep-wcmc npm account to login. (You only need to do this if you plan to use @unep-wcmc packages as they are set as private packages.)
+- ```npm login``` and use unep-wcmc npm account to login. (You only need to do this if you plan to use @unepwcmc packages as they are set as private packages.)
 - ```yarn install``` to install the dependencies
 - ```yarn dev``` to start dev server
 

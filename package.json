@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-3-tempalte",
+  "name": "nuxt-3-tempalte-do-not-remove-unepwcmc-it-is-used-for-",
   "type": "module",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "lint": "yarn lint:ts --fix && yarn lint:style --fix",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "install:local:@unep-wcmc/user-management": "yalc add @unep-wcmc/user-management && yarn install"
+    "install:local:@unepwcmc/user-management": "yalc add @unepwcmc/user-management && yarn install"
   },
   "devDependencies": {
     "@namics/stylelint-bem": "^10.0.0",
@@ -50,7 +50,7 @@
     "@formkit/inputs": "^1.4.0",
     "@formkit/nuxt": "^1.4.0",
     "@pinia/nuxt": "^0.5.1",
-    "@unep-wcmc/user-management":"0.0.1",
+    "@unepwcmc/user-management":"0.0.2",
     "defu": "^6.1.4"
   },
   "resolutions": {
