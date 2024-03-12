@@ -36,7 +36,7 @@ const toSignInOutText = computed(() => status.value === 'authenticated' ? 'Sign 
   @apply py-3 px-8 flex flex-col gap-3 items-center justify-between border-b-theme-primary border-b;
 
   &__log-in-out {
-    @apply button w-32;
+    @apply button ;
   }
 }
 </style>

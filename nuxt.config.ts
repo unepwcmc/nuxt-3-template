@@ -12,44 +12,6 @@ if (!NUXT_SERVER) {
   if (PRODUCTION_MODE) { errorMsg = 'You are in production mode. However, production server path is not detected! Please configure your environment' }
   throw new Error(errorMsg)
 }
-const WCMCUSERMANAGEMENTCONFIG = {
-  auth: {
-    isEnabled: true,
-    provider: {
-      type: 'authjs'
-    },
-    globalAppMiddleware: {
-      isEnabled: true,
-      allow404WithoutAuth: true
-    }
-  },
-  config: {
-    enableAzureSignIn: true
-  },
-  enviromentVariablesPrivate: {
-    /*
-      for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
-      mount WcmcUserManager::Engine, at: "/user_management"
-      is inserted in routes.rb
-      whatever is put after 'at:' will be matched up here as the auth API path
-    */
-    RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
-    NUXT_SECRET: process.env.NUXT_SECRET,
-    AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
-    AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
-    AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID,
-    USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER
-  },
-  enviromentVariablesPublic: {
-    AUTH_PAGES: {
-      // Same as the path in ~/pages/*
-      signIn: '/sign-in',
-      signOut: '/sign-out',
-      error: '/sign-in',
-      passwordReset: { name: 'password-reset' } // Or /password-reset
-    }
-  }
-}
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -93,7 +55,7 @@ export default defineNuxtConfig({
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/eslint-module', { fix: true }],
     ['@pinia/nuxt', { disableVuex: false }],
-    // ['@unep-wcmc/user-management', WCMCUSERMANAGEMENTCONFIG],
+    '@unep-wcmc/user-management',
     /*
       for @unep-wcmc/user-management
       - If you want to use '@nuxtjs/tailwindcss' make sure it is after @unep-wcmc/user-management module.
@@ -105,6 +67,44 @@ export default defineNuxtConfig({
   ],
   formkit: {
     configFile: './formkit/formkit.config.ts'
+  },
+  wcmcUserManagement: {
+    auth: {
+      isEnabled: true,
+      provider: {
+        type: 'authjs'
+      },
+      globalAppMiddleware: {
+        isEnabled: true,
+        allow404WithoutAuth: true
+      }
+    },
+    config: {
+      enableAzureSignIn: true
+    },
+    enviromentVariablesPrivate: {
+      /*
+        for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
+        mount WcmcUserManager::Engine, at: "/user_management"
+        is inserted in routes.rb
+        whatever is put after 'at:' will be matched up here as the auth API path
+      */
+      RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
+      NUXT_SECRET: process.env.NUXT_SECRET,
+      AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
+      AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
+      AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID,
+      USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER
+    },
+    enviromentVariablesPublic: {
+      AUTH_PAGES: {
+        // Same as the path in ~/pages/*
+        signIn: '/sign-in',
+        signOut: '/sign-out',
+        error: '/sign-in',
+        passwordReset: { name: 'password-reset' } // Or /password-reset
+      }
+    }
   },
   i18n: {
     strategy: 'prefix',
