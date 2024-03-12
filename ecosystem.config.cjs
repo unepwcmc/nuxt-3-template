@@ -1,3 +1,17 @@
+const path = require('path')
+const fs = require('fs')
+const dotenv = require('dotenv')
+
+// this function will return all variables in `.env` file but NOT set them to `process.env`
+const getEnvVariables = () => {
+  const envPath = path.join(__dirname, '.env')
+  const envConfig = dotenv.parse(fs.readFileSync(envPath))
+  if (Object.keys(envConfig).length === 0) {
+    throw new Error(`No Environment variables found in ${envPath}. Are you sure? If you are sure, then remove me/the check in ${envPath}`)
+  }
+  return envConfig
+}
+
 module.exports = {
   apps: [
     {
@@ -5,7 +19,8 @@ module.exports = {
       script: '/home/wcmc/.nvm/versions/node/v21.7.1/bin/node ./.output/server/index.mjs', // If you change the node version here then please also change the version in ~/config/deploy.rb
       port: '8084', // This will be used to launch the server so it becomes http://localhost:8083 make sure the port is free in production server
       cwd: '/home/wcmc/nuxt-3-template/current/',
-      exec_mode: 'cluster'
+      exec_mode: 'cluster',
+      env: getEnvVariables() // Nuxt 3 does not load .env automatically https://nuxt.com/docs/guide/directory-structure/env
       // interpreter: '/bin/bash', // For Production server 2 this line needs to be commented out otherwise it throws an error
 
     }

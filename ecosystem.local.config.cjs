@@ -1,7 +1,7 @@
 /**
- *  By default running './.output/server/index.mjs' will not laod ~/.env so
- * you need to load .env here
- * Not sure how productino server pm2 was setup as it does not require dotenv in staging/production servers
+ * By default running './.output/server/index.mjs' will not laod ~/.env so
+ * you need to load .env here.
+ * Do not load env in this way on production server as it might mess up with other environments maybe?
  * */
 require('dotenv').config({ path: '/Users/yuelongh/Documents/WCMC/nuxt-3-template/.env' })
 
