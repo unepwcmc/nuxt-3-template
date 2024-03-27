@@ -73,10 +73,7 @@ export default defineNuxtConfig({
         allow404WithoutAuth: true
       }
     },
-    config: {
-      enableAzureSignIn: true
-    },
-    enviromentVariablesPrivate: {
+    configurationsPrivate: {
       /*
         for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
         mount WcmcUserManager::Engine, at: "/user_management"
@@ -87,10 +84,11 @@ export default defineNuxtConfig({
       NUXT_SECRET: process.env.NUXT_SECRET,
       AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
       AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
-      AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID,
-      USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER
+      AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID
     },
-    enviromentVariablesPublic: {
+    configurationsPublic: {
+      enableAzureSignIn: true,
+      USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER,
       AUTH_PAGES: {
         // Same as the path in ~/pages/*
         signIn: '/sign-in',

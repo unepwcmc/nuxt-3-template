@@ -1,6 +1,6 @@
 <template>
   <div class="page-sign-in">
-    <SignIn
+    <UserManagementSignIn
       class="page-sign-in__component"
       v-bind="{
         defaultStyle: 1, // Optional, Hide this prop if you are using your own styles
@@ -16,8 +16,7 @@
           </NuxtLink>
         </span>
       </template>
-    </SignIn>
-    <hr>
+    </UserManagementSignIn>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
       If you don't have passwordReset present in authPages in module setup then
       you might see Maximum call stack size exceeded rather then component not registered!
     -->
-    <PasswordReset
+    <UserManagementPasswordReset
       class="page-password-reset__component"
       v-bind="{
         defaultStyle: 1
@@ -54,7 +54,7 @@
           Go to Sign in
         </NuxtLink>
       </template>
-    </PasswordReset>
+    </UserManagementPasswordReset>
     <hr>
     {{ status }}
     {{ data }}

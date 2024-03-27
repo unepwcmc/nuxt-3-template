@@ -1,4 +1,7 @@
- # Nuxt-3-template
+# TODO add github token https://github.com/unepwcmc/wcmc-vue-svg-icons
+
+
+# Nuxt-3-template
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
@@ -7,6 +10,10 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 - ```yarn install``` to install the dependencies
 - ```yarn dev``` to start dev server
 
+## To download @unepwcmc/xxx packages
+- Follow [the instruction](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to generate your Github token
+- ```nano ~/.npmrc``` - add your token to npmrc
+- ```//npm.pkg.github.com/:_authToken=your_token``` - Add your generated token to your_token
 
 ## Run Production server locally
 
@@ -41,3 +48,4 @@ In Nuxt 3 when the server is ran in production mode, Nuxt 3 does NOT load env fi
 
 ## Known Issues
 - We recommend you to read [known issues section](./doc/known-issues.md)
+
