@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint:ts": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
-    "lint": "yarn lint:ts --fix && yarn lint:style --fix",
+    "lint:fix": "yarn lint:ts --fix && yarn lint:style --fix",
+    "lint": "yarn lint:ts && yarn lint:style",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "install:local:@unepwcmc/user-management": "yalc add @unepwcmc/user-management && yarn install"
