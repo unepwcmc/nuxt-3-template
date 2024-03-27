@@ -55,7 +55,6 @@
     "@pinia/nuxt": "^0.5.1",
     "@unepwcmc/interactive-table":"0.0.3",
     "@unepwcmc/user-management": "0.0.3",
-    "defu": "^6.1.4",
     "lodash": "^4.17.21"
   },
   "resolutions": {
