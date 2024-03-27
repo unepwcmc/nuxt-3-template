@@ -2664,14 +2664,24 @@
     "@typescript-eslint/types" "6.21.0"
     eslint-visitor-keys "^3.4.1"
 
-"@unepwcmc/user-management@0.0.2":
-  version "0.0.2"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.2/11be595750f2b9f19e465e5f90bc769d42e0a5c2#11be595750f2b9f19e465e5f90bc769d42e0a5c2"
-  integrity sha512-UO2WeQPhr4i2wQKm+htdMpk8wwM+p+fFW+240+9joAxy5F3DWIDQtRSoFp2+upum83Lz7hSCXFWlJXdNW1Mm1Q==
+"@unepwcmc/interactive-table@0.0.3":
+  version "0.0.3"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.3/84f743d42a3ea23c7f6c18a666069629df445546#84f743d42a3ea23c7f6c18a666069629df445546"
+  integrity sha512-ozdpuFbRec6X3eue5yRFQUsZ6CRIAmWP4+P1l0l+hmce7MsVqcPOaCEwRB2p6BDo1Iio9F0GFmHdt1UrlSSU5w==
+  dependencies:
+    lodash "^4.17.21"
+    pinia "^2.1.7"
+    vue "^3.4.15"
+
+"@unepwcmc/user-management@0.0.3":
+  version "0.0.3"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.3/96c931b39e24e4e2d3517e5e9a0894c5b254ca33#96c931b39e24e4e2d3517e5e9a0894c5b254ca33"
+  integrity sha512-A0Rg41ummCWpgBY8ehKyTaIMkZYlU3OmY9K0CYmZ8utr38n3Tq/dNjEsI4sSTx5wXUGcCGhlMAcqIJO+MvgFKg==
   dependencies:
     "@formkit/core" "^1.4.0"
     "@nuxt/kit" "^3.10.2"
     "@sidebase/nuxt-auth" "0.6.7"
+    "@unepwcmc/interactive-table" "0.0.3"
     next-auth "4.21.1"
 
 "@ungap/structured-clone@^1.2.0":
@@ -7430,7 +7440,7 @@ pify@^2.3.0:
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
 
-pinia@>=2.1.7:
+pinia@>=2.1.7, pinia@^2.1.7:
   version "2.1.7"
   resolved "https://registry.npmjs.org/pinia/-/pinia-2.1.7.tgz#4cf5420d9324ca00b7b4984d3fbf693222115bbc"
   integrity sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==
@@ -9762,9 +9772,9 @@ vue-router@^4.2.5, vue-router@^4.3.0:
   dependencies:
     "@vue/devtools-api" "^6.5.1"
 
-vue@^3.4.19:
+vue@^3.4.15, vue@^3.4.19:
   version "3.4.21"
-  resolved "https://registry.npmjs.org/vue/-/vue-3.4.21.tgz#69ec30e267d358ee3a0ce16612ba89e00aaeb731"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.21.tgz#69ec30e267d358ee3a0ce16612ba89e00aaeb731"
   integrity sha512-5hjyV/jLEIKD/jYl4cavMcnzKwjMKohureP8ejn3hhEjwhWIhWeuzL2kJAjzl/WyVsgPY56Sy4Z40C3lVshxXA==
   dependencies:
     "@vue/compiler-dom" "3.4.21"
