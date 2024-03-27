@@ -2,8 +2,6 @@ import { describe, expect, test } from 'vitest'
 import { createPage } from '@nuxt/test-utils/e2e'
 import { useSetup } from './setup'
 
-const logger = console.log
-
 // TODO: this currently fails with GetPortError - not sure why
 describe('Home Page', async () => {
   await useSetup().defaultSetup()
