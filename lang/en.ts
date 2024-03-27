@@ -21,6 +21,11 @@ export default defineI18nLocale((locale: string) => {
         link: 'Password Reset'
       }
     },
+    component: {
+      PageFooter: {
+        copyright: 'Copyright UNEP-WCMC 20XX'
+      }
+    },
     // These are not from rails so you can search in our wcmc created modules to see how they might be used, they must be defined here!
     apiErrorResponse: {
       '999-999-995': 'Method is not supported.', // (for devs, this is used in APIs created in Nuxt Server
