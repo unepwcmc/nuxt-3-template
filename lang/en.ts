@@ -1,10 +1,10 @@
 /**
- * -  In general, You can now do some extra fetching/anything beefore returning the translations
- * -  If you don't need this extra feature then you can name this file as a .json file or just returning translations
+ * - In general, You can now do some extra fetching/anything beefore returning the translations
+ * - If you don't need this extra feature then you can name this file as a .json file or just returning translations
  * - There are 2 ways to use this file see
  * - Only use this file When you want to change some of our module translations, Otherwise use enSimpleUsuage.ts instead.
  */
-import { defu } from 'defu'
+import { defaultsDeep } from 'lodash'
 
 export default defineI18nLocale((locale: string) => {
   const defaultUserManagementTranslations = getDefaultUserManagementTranslations()
@@ -31,7 +31,7 @@ export default defineI18nLocale((locale: string) => {
     }
   }
   // You have to use deep merge. Don't use shallow merge otherwise some objects might be overwritten!
-  return defu(translations, defaultUserManagementTranslations)
+  return defaultsDeep(translations, defaultUserManagementTranslations)
 })
 
 function getDefaultUserManagementTranslations () {
