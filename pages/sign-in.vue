@@ -12,11 +12,14 @@
         <span class="page-sign-in__password-reset">
           <span class="page-sign-in__password-reset--title" v-text="t('signIn.passwordReset.title')" />
           <NuxtLink class="page-sign-in__password-reset--link" :to="localePath({ name: 'password-reset' })">
-            {{ t('signIn.passwordReset.link') }}
+            <span v-text="t('signIn.passwordReset.link') " />
           </NuxtLink>
         </span>
       </template>
     </UserManagementSignIn>
+    <NuxtLink class="page-sign-in__password-reset--link" :to="localePath({ name: 'password-reset' })">
+      <span v-text="t('signIn.passwordReset.link') " />
+    </NuxtLink>
   </div>
 </template>
 
@@ -49,6 +52,10 @@ function afterSignInSuccessful () {
 </script>
 
 <style lang="postcss" scoped>
+/* To define your own style please uncommend and look into the following file */
+
+/* @import url('@/assets/css/components/sign-in.pcss'); */
+
 .page-sign-in {
   @apply flex flex-col items-center justify-between mt-10;
 
@@ -57,7 +64,4 @@ function afterSignInSuccessful () {
   }
 }
 
-/* To define your own style please uncommend and look into the following file */
-
-/* @import url('../assets/components/sign-in.pcss'); */
 </style>

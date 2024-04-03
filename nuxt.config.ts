@@ -6,7 +6,42 @@ const PRODUCTION_MODE = process.env.NODE_ENV === 'production'
 if (!RAILS_API_SERVER) {
   throw new Error('RAILS_API_SERVER Not Provided!!!!')
 }
-
+const wcmcUserManagement = {
+  auth: {
+    isEnabled: true,
+    provider: {
+      type: 'authjs'
+    },
+    globalAppMiddleware: {
+      isEnabled: true,
+      allow404WithoutAuth: true
+    }
+  },
+  configurationsPrivate: {
+    NUXT_SECRET: process.env.NUXT_SECRET,
+    AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
+    AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
+    AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID
+  },
+  configurationsPublic: {
+    enableAzureSignIn: true,
+    /*
+      for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
+      mount WcmcUserManager::Engine, at: "/user_management"
+      is inserted in routes.rb
+      whatever is put after 'at:' will be matched up here as the auth API path
+    */
+    RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
+    USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER,
+    AUTH_PAGES: {
+      // Same as the path in ~/pages/*
+      signIn: '/sign-in',
+      signOut: '/sign-out',
+      error: '/sign-in',
+      passwordReset: { name: 'password-reset' } // Or /password-reset
+    }
+  }
+}
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
@@ -62,42 +97,7 @@ export default defineNuxtConfig({
   formkit: {
     configFile: './formkit/formkit.config.ts'
   },
-  wcmcUserManagement: {
-    auth: {
-      isEnabled: true,
-      provider: {
-        type: 'authjs'
-      },
-      globalAppMiddleware: {
-        isEnabled: true,
-        allow404WithoutAuth: true
-      }
-    },
-    configurationsPrivate: {
-      /*
-        for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
-        mount WcmcUserManager::Engine, at: "/user_management"
-        is inserted in routes.rb
-        whatever is put after 'at:' will be matched up here as the auth API path
-      */
-      RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
-      NUXT_SECRET: process.env.NUXT_SECRET,
-      AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
-      AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
-      AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID
-    },
-    configurationsPublic: {
-      enableAzureSignIn: true,
-      USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER,
-      AUTH_PAGES: {
-        // Same as the path in ~/pages/*
-        signIn: '/sign-in',
-        signOut: '/sign-out',
-        error: '/sign-in',
-        passwordReset: { name: 'password-reset' } // Or /password-reset
-      }
-    }
-  },
+  wcmcUserManagement,
   i18n: {
     strategy: 'prefix',
     experimental: {

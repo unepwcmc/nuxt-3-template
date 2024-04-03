@@ -2,11 +2,13 @@
   <UserManagementPanel
     v-bind="{
       defaultStyle: 1, // Optional, Hide this prop if you are using your own styles
+      enableCreateUser:true
     }"
   >
-    <!-- <template #iconSortingDefault>
-      sdfsdf
-    </template>
+    <!--
+    <template #iconCreateNewUser />
+    <template #iconCloseCreateUserPanel />
+    <template #iconSortingDefault />
     <template #iconSortingAscending />
     <template #iconSortingDescending />
     <template #iconSearch />
