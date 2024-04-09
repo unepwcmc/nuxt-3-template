@@ -2689,33 +2689,24 @@
     "@typescript-eslint/types" "6.21.0"
     eslint-visitor-keys "^3.4.1"
 
-"@unepwcmc/interactive-table@0.0.4":
-  version "0.0.4"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.4/4d027ee7c64e7d4165ee1bd5466fa44b9c56751b#4d027ee7c64e7d4165ee1bd5466fa44b9c56751b"
-  integrity sha512-Ia++4+Ge9/HcIEko+PdqXvsff4xPtYt8SmIDmGUgfA+uCjEQCeeTywHEraoeiA/aPZe8YDmVMdANOcC55PMseg==
+"@unepwcmc/interactive-table@0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.7/4de3a3886b3172b4539562b26b7f4b00d3d817d8#4de3a3886b3172b4539562b26b7f4b00d3d817d8"
+  integrity sha512-2ol0x2PnrNjbqEKPdcrVsCHm4wFyOtATnA/DLyGVkw+dkFeJD+TQCSfXPpJZD2uYDG9L6mfLZcI6V7HokHAqEQ==
   dependencies:
     lodash "^4.17.21"
     pinia "^2.1.7"
     vue "^3.4.15"
 
-"@unepwcmc/interactive-table@0.0.5":
-  version "0.0.5"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.5/42cebc0fa12e98b460974d1c95eb403a1e3f1aec#42cebc0fa12e98b460974d1c95eb403a1e3f1aec"
-  integrity sha512-C09JX5SHFuzaeJrxi5iVEpDSgC/jyCbBJ9QBv1pDu59RGGWpinqMPy+585XEyzkWrCcNBo8Jffro0xNZSKOsug==
-  dependencies:
-    lodash "^4.17.21"
-    pinia "^2.1.7"
-    vue "^3.4.15"
-
-"@unepwcmc/user-management@0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.6/6f2aaf633b5e7106c30265a957be1d0ad4c9e415#6f2aaf633b5e7106c30265a957be1d0ad4c9e415"
-  integrity sha512-hagwYm9c2eRsPKRjM5auNVsL4UEf7sZCL4CB1LXxBodnHI99oR282b054OHk1LFNJSFYg6Vs6zYG9Uf41VIotQ==
+"@unepwcmc/user-management@0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.7/7de55b704632c659fd0a79c5e47063787700db93#7de55b704632c659fd0a79c5e47063787700db93"
+  integrity sha512-KuHVE2RzlNZOPX0fEXshYeMucryPxfcNnL+v5TMpeOGpFVyg49t54jXxV+nRNB/C8F46pt2lGUN3+cUIFVO1lg==
   dependencies:
     "@formkit/core" "^1.4.0"
     "@nuxt/kit" "^3.10.2"
     "@sidebase/nuxt-auth" "0.7.0"
-    "@unepwcmc/interactive-table" "0.0.4"
+    "@unepwcmc/interactive-table" "0.0.7"
     next-auth "~4.21.1"
 
 "@ungap/structured-clone@^1.2.0":

@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defaultValues } from '@unepwcmc/interactive-table'
-import type { TableConfig } from '@unepwcmc/interactive-table/types/config'
-import type { ModelValue } from '@unepwcmc/interactive-table/types/data'
+import type { InteractiveTableConfigurations } from '@unepwcmc/interactive-table/types/config'
+import type { DataQueryDataReturn } from '@unepwcmc/interactive-table/types/data'
 
 const { HEADER_SHOW_IN_OPTIONS } = defaultValues.config
 type UserModelData = {
@@ -16,8 +16,8 @@ type AssociatedData = {
   }[]
   posts: string[]
 }
-const mockData = ref<ModelValue<'users', UserModelData, AssociatedData> | undefined>()
-const config = ref<TableConfig>({
+const mockData = ref<DataQueryDataReturn<'users', UserModelData, AssociatedData> | undefined>()
+const config = ref<InteractiveTableConfigurations>({
   attributes: [
     {
       field: 'id',
@@ -120,19 +120,19 @@ const config = ref<TableConfig>({
     }
   },
   dataQuery: {
-    objectName: 'users',
-    modelData: { attributes: ['id', 'email', 'first_name', 'last_name', 'password'] },
-    associatedData: {
+    object_name: 'users',
+    model_data: { attributes: ['id', 'email', 'first_name', 'last_name', 'password'] },
+    associated_data: {
       roles: { attributes: ['name', 'created_at'] },
       posts: { attributes: ['title', 'body'] }
     },
     filters: [
     ],
-    sortingBy: [
+    sorting_by: [
     ],
     search: '',
-    recordsPerPage: 100,
-    requestedPage: 1
+    records_per_page: 100,
+    requested_page: 1
   },
   filters: {
     query: {
