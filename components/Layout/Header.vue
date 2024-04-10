@@ -9,21 +9,27 @@
           src="/img/UNEP-WCMC_white.png"
         >
       </NuxtLink>
-      <LayoutNavigationTablet
-        v-bind="{links:mainMenuItems}"
-        class="layout-header__menu layout-header__menu--tablet"
-      />
       <LayoutNavigationMobile
+        v-if="isTablet|| isMobile"
         v-bind="{links:mainMenuItems}"
         class="layout-header__menu layout-header__menu--mobile"
+      />
+      <LayoutNavigationDesktop
+        v-else
+        v-bind="{links:mainMenuItems}"
+        class="layout-header__menu layout-header__menu--desktop"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useScreenStore } from '@/store/useScreenStore'
+
 const localePath = useLocalePath()
 const { mainMenuItems } = useNavigation()
+const screenStore = useScreenStore()
+const { isTablet, isMobile } = storeToRefs(screenStore)
 </script>
 
 <style lang="postcss" scoped>
@@ -44,12 +50,12 @@ const { mainMenuItems } = useNavigation()
   }
 
   &__menu {
-    &--tablet {
-      @apply hidden md:flex;
+    &--desktop {
+      @apply hidden lg:flex;
     }
 
     &--mobile {
-      @apply flex items-center md:hidden;
+      @apply flex items-center lg:hidden;
     }
   }
 }

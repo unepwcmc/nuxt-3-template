@@ -77,7 +77,7 @@ function goBack () {
   }
 
   &__items {
-    @apply flex flex-col md:flex-row h-full text-white;
+    @apply flex flex-col h-full text-white;
   }
 
   &__item {
