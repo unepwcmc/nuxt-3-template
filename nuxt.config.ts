@@ -6,6 +6,7 @@ const PRODUCTION_MODE = process.env.NODE_ENV === 'production'
 if (!RAILS_API_SERVER) {
   throw new Error('RAILS_API_SERVER Not Provided!!!!')
 }
+
 const wcmcUserManagement = {
   auth: {
     isEnabled: true,
@@ -35,9 +36,9 @@ const wcmcUserManagement = {
     USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER,
     AUTH_PAGES: {
       // Same as the path in ~/pages/*
-      signIn: '/sign-in',
-      signOut: '/sign-out',
-      error: '/sign-in',
+      signIn: '/en/sign-in',
+      signOut: '/en/sign-out',
+      error: '/en/sign-in',
       passwordReset: { name: 'password-reset' } // Or /password-reset
     }
   }
@@ -116,11 +117,9 @@ export default defineNuxtConfig({
     defaultLocale: 'en'
   },
   tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
+    cssPath: ['~/assets/css/tailwind.css', { injectPosition: 'first' }],
     configPath: 'tailwind.config',
     exposeConfig: false,
-    exposeLevel: 2,
-    injectPosition: 'first',
     viewer: true
   },
   build: {
@@ -136,9 +135,14 @@ export default defineNuxtConfig({
     plugins: {},
     transpile: ['@formkit/vue']
   },
-  runtimeConfig: {},
+  runtimeConfig: {
+    public: {
+      RAILS_API_SERVER
+    }
+  },
   experimental: {
     componentIslands: true
   },
-  alias: {}
+  alias: {},
+  dirs: ['types/**/*.ts']// Auto import all types
 })

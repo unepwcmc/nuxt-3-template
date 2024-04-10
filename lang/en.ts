@@ -23,8 +23,13 @@ export default defineI18nLocale((locale: string) => {
     },
     component: {
       PageFooter: {
-        copyright: 'Copyright UNEP-WCMC 20XX'
+        copyright: 'Copyright UNEP-WCMC'
       }
+    },
+    buttons: {
+      signOut: 'Sign out',
+      signIn: 'Sign in',
+      back: 'Back'
     },
     // These are not from rails so you can search in our wcmc created modules to see how they might be used, they must be defined here!
     apiErrorResponse: {

@@ -16,11 +16,7 @@ module.exports = {
   ],
   theme: {
     screens,
-    extend: {
-      colors: {
-        theme
-      }
-    }
+    extend: theme
   },
   plugins: [
     FormKitVariants,

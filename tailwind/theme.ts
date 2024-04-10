@@ -1,4 +1,9 @@
 export default {
-  primary: '#712213',
-  secondary: '#0578A4'
+  colors: {
+    theme: {
+      primary: '#133568',
+      'primary-light': '#163d78',
+      secondary: '#00AAF1'
+    }
+  }
 }

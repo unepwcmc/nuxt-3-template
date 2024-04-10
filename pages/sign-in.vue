@@ -36,12 +36,21 @@ definePageMeta({
 const i18n = useI18n()
 const { t } = i18n
 const localePath = useLocalePath()
-const redirectLinkAfterSignIn = computed(() => localePath({ name: 'test' }))
-function afterSignInSuccessful () {
+const route = useRoute()
+const callbackurl = computed(() => {
+  // to get callback path
+  try {
+    if (route.query?.callbackUrl) { return new URL(route.query.callbackUrl) }
+  } catch (error) { }
+  return undefined
+})
+const redirectLinkAfterSignIn = computed(() => callbackurl.value?.pathname || localePath({ name: 'index' }))
+
+async function afterSignInSuccessful () {
   /**
    * By default because we set unauthenticatedOnly to true so after logging in successfully we will be redirected to home page.
    * if you want to go to a specific page then either
-   * set redirectLinkAfterSignIn with the path i,e localePath({ name: 'test' }, localePath('test')
+   * set defaultrRedirectLinkAfterSignIn with the path i,e localePath({ name: 'test' }, localePath('test')
    * or
    * set unauthenticatedOnly to false and
    * put navigateTo(localePath({ name: 'your page names' })) in this function
