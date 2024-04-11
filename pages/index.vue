@@ -11,6 +11,12 @@
 </template>
 
 <script setup lang="ts">
+const pageTitle = ref('Home')
+
+useHead({
+  title: pageTitle
+})
+
 definePageMeta({
   auth: false
 })
