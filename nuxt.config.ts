@@ -51,7 +51,7 @@ export default defineNuxtConfig({
       description: SITE_DESCRIPTION,
       author: 'WCMC'
     },
-    disable: !process.env.NODE_ENV === 'production',
+    disable: process.env.NODE_ENV !== 'production',
     register: true,
     scope: '/',
     dest: 'public',
