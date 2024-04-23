@@ -36,28 +36,27 @@ import type {
   UsersModelData
 } from '@unepwcmc/user-management'
 import { InteractiveTable } from '@unepwcmc/interactive-table'
-
-const { t } = useI18n()
+const i18n = useI18n()
 const config = useRuntimeConfig()
 const {
   getUserManagementTableConfig,
   getRailsAPIPaths,
   getTranslationsFromRailsAPIErrorResponse
 } = useWcmcUserManagement()
-const { fetchRailsAPI } = useRailsAPI()
+const { fetch } = useWcmcUserManagementRailsFetch()
 const railsAPIs = getRailsAPIPaths(config)
-const tableConfigurations = ref(getUserManagementTableConfig({ i18n: t, defaultStyle: 1 }))
+const tableConfigurations = ref(getUserManagementTableConfig({ i18n, defaultStyle: 1 }))
 const usersList = ref<DataQueryDataReturn<'users', UsersModelData, UsersAssociatedData> | undefined>()
-const errorList: string[] = ref([])
+const errorList = ref< string[]>([])
 
 async function archiveRestoreCurrentRow (archiveRestoreCurrentRowInfo: EmitTableAction<EmitArchiveRestoreConfig>) {
   setTableBusy(true)
-  const row = archiveRestoreCurrentRowInfo.row.model_data as UserModelData
+  const row = archiveRestoreCurrentRowInfo.row.model_data as UsersModelData
   const archiveOrRestore = archiveRestoreCurrentRowInfo.config.trueToArchiveFalseToRestore
-  await fetchRailsAPI(railsAPIs.users.archiveRestoreUser(row.id, archiveOrRestore), {
+  await fetch(railsAPIs.users.archiveRestoreUser(row.id, archiveOrRestore), {
     method: 'PATCH'
   }).catch((error) => {
-    alert(getTranslationsFromRailsAPIErrorResponse(t, error).toString())
+    alert(getTranslationsFromRailsAPIErrorResponse({ i18n, error }).toString())
   })
   archiveRestoreCurrentRowInfo.triggerUpdateTable()
   setTableBusy(false)
@@ -66,15 +65,15 @@ async function updateTable (updateTableInfo: EmitUpdateTable) {
   errorList.value = []
   setTableBusy(true)
   const dataQuery = updateTableInfo.dataQuery
-  await fetchRailsAPI(railsAPIs.users.getUsers, {
+  await fetch(railsAPIs.users.getUsers, {
     method: 'POST',
     body: dataQuery
   })
-    .then((data) => {
+    .then((data:any) => {
       usersList.value = data
     })
     .catch((error) => {
-      errorList.value = getTranslationsFromRailsAPIErrorResponse(t, error)
+      errorList.value = getTranslationsFromRailsAPIErrorResponse({ i18n, error })
     })
   setTableBusy(false)
 }
@@ -84,21 +83,21 @@ async function fetchFilters (/** updateFiltersInfo: EmitUpdateFilterOptions**/) 
   const filters = tableConfigurations.value.filters
   const query = filters?.query
   if (filters && query) {
-    await fetchRailsAPI(railsAPIs.users.getAvailableFilters, {
+    await fetch(railsAPIs.users.getAvailableFilters, {
       method: 'POST',
       body: query
-    }).then((data) => {
+    }).then((data:any) => {
       filters.data = data
     })
       .catch((error) => {
-        errorList.value = getTranslationsFromRailsAPIErrorResponse(t, error)
+        errorList.value = getTranslationsFromRailsAPIErrorResponse({ i18n, error })
       })
     setTableBusy(false)
   } else {
     console.warn('No config provided')
   }
 }
-function setTableBusy (isTableBusy) {
+function setTableBusy (isTableBusy:boolean) {
   tableConfigurations.value.options.tableIsBusy = isTableBusy
 }
 </script>

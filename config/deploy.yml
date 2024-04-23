@@ -1,0 +1,26 @@
+# Name of your application. Used to uniquely configure containers.
+service: nuxt-3-template
+
+registry:
+  server: ghcr.io
+  username:
+    - KAMAL_REGISTRY_USERNAME
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Use a different ssh user than root
+ssh:
+  user: wcmc
+
+# Configure builder setup.
+builder:
+# if multiarch not set to true then it will build 2 images the arch specified below and the arch for your machine.
+  multiarch: false
+  # Server has arch -> amd64 this is specifically here for mac users so it does not build on mac architecture
+  arch: amd64
+  dockerfile: Dockerfile.deploy
+  args:
+    WCMC_PACKAGE_REGISTRY: https://npm.pkg.github.com
+    REGISTRY_FOR_AUTH_TOKEN: npm.pkg.github.com
+    NODE_VERSION: 21
+    GITHUB_TOKEN: ${GITHUB_TOKEN}

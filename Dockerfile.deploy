@@ -1,0 +1,32 @@
+ARG NODE_VERSION
+FROM node:$NODE_VERSION
+
+
+# Update and install build-essential.
+RUN apt-get update -qq && apt-get install -y build-essential \
+  # Clean up
+  && apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
+
+# set npm login for accessing github packages
+ARG WCMC_PACKAGE_REGISTRY
+ARG REGISTRY_FOR_AUTH_TOKEN
+ARG GITHUB_TOKEN
+RUN npm config set @unepwcmc:registry $WCMC_PACKAGE_REGISTRY
+RUN npm config set //$REGISTRY_FOR_AUTH_TOKEN/:_authToken $GITHUB_TOKEN
+
+# Nuxt app lives here
+WORKDIR /nuxt-app
+
+# Copy source code
+COPY . /nuxt-app
+
+# Yarn install
+RUN yarn install
+
+# Yarn build
+RUN yarn build
+
+EXPOSE 3000
+# Start server
+CMD ["yarn", "start"]

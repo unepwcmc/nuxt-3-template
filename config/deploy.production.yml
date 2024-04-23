@@ -1,0 +1,22 @@
+# Name of the container image.
+image: unepwcmc/nuxt-3-template
+
+# Deploy to these servers.
+servers:
+  web:
+    hosts:
+      - new-web-supported-production.linode.unep-wcmc.org
+    labels:
+      traefik.http.routers.nuxt-3-template.rule: Host(`nuxt-3-template.new-web-supported-production.linode.unep-wcmc.org`)
+
+env:
+  clear:
+      RAILS_API_SERVER: http://localhost:3000
+      SITE_TITLE: Nuxt 3 Template
+      SITE_DESCRIPTION: It is the WCMC Nuxt 3 template
+  secret:
+    - AUTH_ORIGIN
+    - AZURE_AD_CLIENT_ID
+    - AZURE_AD_CLIENT_SECRET
+    - AZURE_AD_TENANT_ID
+    - NUXT_SECRET

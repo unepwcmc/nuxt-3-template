@@ -7,6 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint:ts": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
@@ -16,7 +17,9 @@
     "test:watch": "vitest watch",
     "install:local:@unepwcmc/user-management": "yalc add @unepwcmc/user-management && yarn install",
     "install:local:@unepwcmc/interactive-table": "yalc add @unepwcmc/interactive-table && yarn install",
-    "install:local:all": "yarn install:local:@unepwcmc/user-management && yarn install:local:@unepwcmc/interactive-table"
+    "install:local:all": "yarn install:local:@unepwcmc/user-management && yarn install:local:@unepwcmc/interactive-table",
+    "pm2": "pm2 start ecosystem.config.cjs",
+    "pm2d": "pm2 delete ecosystem.config.cjs"
   },
   "devDependencies": {
     "@namics/stylelint-bem": "^10.0.0",
@@ -53,8 +56,8 @@
     "@formkit/inputs": "^1.6.2",
     "@formkit/nuxt": "^1.6.2",
     "@pinia/nuxt": "^0.5.1",
-    "@unepwcmc/interactive-table":"0.0.7",
-    "@unepwcmc/user-management": "0.0.9",
+    "@unepwcmc/interactive-table":"0.0.9",
+    "@unepwcmc/user-management": "0.0.20",
     "lodash": "^4.17.21"
   }
 }

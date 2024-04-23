@@ -56,22 +56,21 @@ const {
   getEditUserAttributes,
   getCreateNewUserAttributes
 } = useWcmcUserManagement()
-const { t } = useI18n()
-
+const i18n = useI18n()
 const tableConfigrations = ref<InteractiveTableConfigurations>(
-  getUserManagementTableConfig({ i18n: t, defaultStyle: 1 })
+  getUserManagementTableConfig({ i18n, defaultStyle: 1 })
 )
 tableConfigrations.value.options.search.enable = false
 tableConfigrations.value.filters?.query?.model_data.attributes.splice(1, 1) // remove first name for filter
 
 const editUserAttributes = ref<GetEditUserAttributes>(
-  getEditUserAttributes({ i18n: t })
+  getEditUserAttributes({ i18n })
 )
 editUserAttributes.value.splice(1, 1) // remove first name in edit user modal
 
 // delete editUserAttributes.value[1] // remove first name in edit user modal
 const createNewUserAttributes = ref<GetCreateNewUserAttributes>(
-  getCreateNewUserAttributes({ i18n: t })
+  getCreateNewUserAttributes({ i18n })
 )
 </script>
 

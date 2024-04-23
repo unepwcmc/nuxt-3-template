@@ -1,49 +1,28 @@
-const RAILS_API_SERVER = process.env.RAILS_API_SERVER
-const SITE_TITLE = process.env.SITE_TITLE || ''
-const SITE_DESCRIPTION = process.env.SITE_DESCRIPTION || ''
-const PRODUCTION_MODE = process.env.NODE_ENV === 'production'
+// import { checker } from 'vite-plugin-checker'
 
-if (!RAILS_API_SERVER) {
-  throw new Error('RAILS_API_SERVER Not Provided!!!!')
-}
-
-const wcmcUserManagement = {
-  auth: {
-    isEnabled: true,
-    provider: {
-      type: 'authjs'
-    },
-    globalAppMiddleware: {
-      isEnabled: true,
-      allow404WithoutAuth: true
-    }
-  },
-  configurationsPrivate: {
-    NUXT_SECRET: process.env.NUXT_SECRET,
-    AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
-    AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
-    AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID
-  },
-  configurationsPublic: {
-    enableAzureSignIn: true,
-    /*
-      for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
-      mount WcmcUserManager::Engine, at: "/user_management"
-      is inserted in routes.rb
-      whatever is put after 'at:' will be matched up here as the auth API path
-    */
-    RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
-    USER_MANAGEMENT_RAILS_BASE_URL: RAILS_API_SERVER,
-    AUTH_PAGES: {
-      // Same as the path in ~/pages/*
-      signIn: '/en/sign-in',
-      signOut: '/en/sign-out',
-      error: '/en/sign-in',
-      passwordReset: { name: 'password-reset' } // Or /password-reset
-    }
-  }
-}
+/**
+ * Do not put SITE_TITLE and SITE_DESCRIPTION in .env and use process.env.SITE_TITLE
+ * Reason: When you run yarn build the SITE_TITLE you set in your local .env and assign to app.head and pwa. The two transform to the actual value
+ *   head: {
+ *     title: process.env.SITE_TITLE
+ *    }
+ * becomes head: {title:'aaaaa'} when you run yarn build not head: {title: process.env.SITE_TITLE}
+ * In short, if you have a different value on server it will not take effect
+ */
+const SITE_TITLE = 'PP Data Management Portal'
+const SITE_DESCRIPTION = 'A WCMC data portal for managing ICCA/WDPA data'
 export default defineNuxtConfig({
+  vite: {
+    plugins: [
+      // checker({
+      //   vueTsc: true
+      // })
+      /**
+       * Install vite-plugin-checker
+       * enable this to check typescript on run dev
+       * */
+    ]
+  },
   devtools: { enabled: true },
   app: {
     // https://nuxt.com/docs/getting-started/seo-meta#title-template
@@ -72,7 +51,7 @@ export default defineNuxtConfig({
       description: SITE_DESCRIPTION,
       author: 'WCMC'
     },
-    disable: !PRODUCTION_MODE,
+    disable: !process.env.NODE_ENV === 'production',
     register: true,
     scope: '/',
     dest: 'public',
@@ -98,7 +77,35 @@ export default defineNuxtConfig({
   formkit: {
     configFile: './formkit/formkit.config.ts'
   },
-  wcmcUserManagement,
+  wcmcUserManagement: {
+    auth: {
+      isEnabled: true,
+      provider: {
+        type: 'authjs'
+      },
+      globalAppMiddleware: {
+        isEnabled: true,
+        allow404WithoutAuth: true
+      }
+    },
+    configurationsPublic: {
+      enableAzureSignIn: true,
+      /*
+        for RAILS_USER_ACCOUNT_API_PREFIX_NAME For example:
+        mount WcmcUserManager::Engine, at: "/user_management"
+        is inserted in routes.rb
+        whatever is put after 'at:' will be matched up here as the auth API path
+      */
+      RAILS_USER_ACCOUNT_API_PREFIX_NAME: '/user_management',
+      AUTH_PAGES: {
+        // Same as the path in ~/pages/*
+        signIn: '/en/sign-in',
+        signOut: '/en/sign-out',
+        error: '/en/sign-in',
+        passwordReset: { name: 'password-reset' } // Or /password-reset
+      }
+    }
+  },
   i18n: {
     strategy: 'prefix',
     experimental: {
@@ -136,11 +143,25 @@ export default defineNuxtConfig({
     transpile: ['@formkit/vue']
   },
   runtimeConfig: {
+    /**
+       * Anything inside here are linked with anything stating with NUXT_xxxxx in .env
+       * i,e: aSecret and A_SECRET below both use the value of NUXT_A_SECRET in .env
+       * You can simply assign a default value for aSecret or A_SECRET  the value only gets changed when NUXT_A_SECRET is present in .env
+       */
+    aSecret: '',
+    A_SECRET: '',
     public: {
-      RAILS_API_SERVER
+      /**
+       * Anything inside here are linked with anything stating with NUXT_PUBLIC_xxxxx in .env
+       * i,e: railsApiServer and RAILS_API_SERVER below both use the value of NUXT_PUBLIC_RAILS_API_SERVER in .env
+       * You can simply assign a default value for railsApiServer or RAILS_API_SERVER, the value only gets changed when NUXT_PUBLIC_RAILS_API_SERVER is present in .env
+       */
+      railsApiServer: '',
+      RAILS_API_SERVER: ''
     }
   },
   experimental: {
+    // This can be remoeved once the functionality becomes avaliable permanently in future Nuxt versions
     componentIslands: true
   },
   alias: {},
