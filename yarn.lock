@@ -2589,24 +2589,24 @@
     "@typescript-eslint/types" "6.21.0"
     eslint-visitor-keys "^3.4.1"
 
-"@unepwcmc/interactive-table@0.0.9":
-  version "0.0.9"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.9/763986e2c0a2dcdefe9b3efa6ca6bcdbe2a77039#763986e2c0a2dcdefe9b3efa6ca6bcdbe2a77039"
-  integrity sha512-hJoSjXTCM/XUOAXMuYrPKvK6MPhoR0ohd+yru0KZk16cw4XMuJX6COzOHzPBpmYLo6unmSWxSYBnkUiwCqMTIA==
+"@unepwcmc/interactive-table@0.0.10":
+  version "0.0.10"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.10/cca491153d6dd303f3e149c23503286bfc897113#cca491153d6dd303f3e149c23503286bfc897113"
+  integrity sha512-g1yMVVZw8wS0ND2NWtfkSXKM4aQ5KA98nZ1DrPpzg1TVV7+m8qImUgmTSYHLK1j6+TZVf9aPckALOnG+I5V3Hg==
   dependencies:
     lodash "^4.17.21"
     pinia "^2.1.7"
     vue "^3.4.15"
 
-"@unepwcmc/user-management@0.0.20":
-  version "0.0.20"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.20/0ca379980ae31a08f1d2e8e1f6755cae5f831383#0ca379980ae31a08f1d2e8e1f6755cae5f831383"
-  integrity sha512-cRF9UTbv6fhJYb4x/RiZpIAU+vZmcN9QczqpV5+5vg9bz8jIDaxbWUc2sMAgcBEhy1UCeuLtJuf1ShPiEg/i6g==
+"@unepwcmc/user-management@0.0.27":
+  version "0.0.27"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.27/74bd4bbb61a9d19b2d14be33ab88727d7d117d48#74bd4bbb61a9d19b2d14be33ab88727d7d117d48"
+  integrity sha512-7qq/JacWDV5tr9aurrCLy+2J+e6fHFCGR9NTdda7MCltF/H/WedQnXl16dSS98/fK2dTPrULzlgwjEJPXERrOA==
   dependencies:
     "@formkit/core" "^1.4.0"
     "@nuxt/kit" "^3.10.2"
     "@sidebase/nuxt-auth" "0.7.0"
-    "@unepwcmc/interactive-table" "0.0.9"
+    "@unepwcmc/interactive-table" "0.0.10"
     next-auth "~4.21.1"
 
 "@ungap/structured-clone@^1.2.0":

@@ -1,6 +1,7 @@
-// import { plugin } from '@unepwcmc/interactive-table'
+import { plugin } from '@unepwcmc/interactive-table'
+import '@unepwcmc/interactive-table/style'
+import screenBreakpoints from '../tailwind/tailwind-breakpoints.config'
 
-export default defineNuxtPlugin((/* nuxtApp */) => {
-  // If you are @unepwcmc/user-management then you don't use the plugin here again as it is already registered in @unepwcmc/user-management
-  // nuxtApp.vueApp.use(plugin)
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.use(plugin, { screenBreakpoints })
 })
