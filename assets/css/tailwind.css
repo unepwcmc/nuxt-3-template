@@ -44,7 +44,7 @@
        @apply flex justify-center;
     }
     &__container{
-      @apply flex flex-col gap-6 pb-[1.38rem] md:pb-12 lg:pb-[4.5rem] px-4 md:px-0 md:w-[40rem] lg:w-[65rem];
+      @apply flex flex-col gap-6 pb-[1.38rem] md:pb-12 lg:pb-[4.5rem] px-4 2xl:px-0 w-[45rem] lg:w-[65rem];
       }
   }
 }
