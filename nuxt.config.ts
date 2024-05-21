@@ -80,6 +80,7 @@ export default defineNuxtConfig({
   wcmcUserManagement: {
     auth: {
       isEnabled: true,
+      baseURL: process.env.AUTH_ORIGIN,
       provider: {
         type: 'authjs'
       },

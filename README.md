@@ -39,7 +39,7 @@ We use Kamal for deployment
 
 - In project root folder run `bundle install`
 - Create a `.env.staging` and `.env.production` in the project root folder (in your local machine - here). \*\* The template is in [.env.staging.example](./.env.staging.example)
-- (Only needed when first time deploying the app) Run `bundle exec kamal setup -d staging` or `bundle exec kamal setup -d production` to setup needed elements on servers. See [official](https://kamal-deploy.org/docs/commands/setup/) for more details
+- (Only needed when first time deploying the app) Run `bundle exec kamal env push -d staging` or `bundle exec kamal env push -d production` to setup envs
 - Run `bundle exec kamal deploy -d staging` - for staging server deployment
 - Run `bundle exec kamal deploy -d production` - for production server deployment
 

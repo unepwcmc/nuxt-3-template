@@ -56,8 +56,8 @@
     "@formkit/inputs": "^1.6.2",
     "@formkit/nuxt": "^1.6.2",
     "@pinia/nuxt": "^0.5.1",
-    "@unepwcmc/interactive-table": "0.0.11",
-    "@unepwcmc/user-management": "0.0.30",
+    "@unepwcmc/interactive-table": "0.0.12",
+    "@unepwcmc/user-management": "0.0.47",
     "lodash": "^4.17.21"
   }
 }

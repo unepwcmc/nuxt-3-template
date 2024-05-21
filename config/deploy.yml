@@ -22,5 +22,11 @@ builder:
   args:
     WCMC_PACKAGE_REGISTRY: https://npm.pkg.github.com
     REGISTRY_FOR_AUTH_TOKEN: npm.pkg.github.com
-    NODE_VERSION: 21
+    NODE_VERSION: 21-slim
     GITHUB_TOKEN: ${GITHUB_TOKEN}
+
+healthcheck:
+  # if your project does not have i18n in url /en then please change to a page that exsists i,e / for home page
+  path: /en
+  max_attempts: 15
+  interval: 20s

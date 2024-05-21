@@ -1,6 +1,13 @@
 # Name of the container image.
 image: unepwcmc/nuxt-3-template
 
+# build the image on staging server - uncomment the following to build remotely if your machine is running to slow for docker build
+# builder:
+#   remote:
+#     multiarch: false
+#     arch: amd64
+#     host: ssh://wcmc@new-web-supported-staging.linode.unep-wcmc.org
+
 # Deploy to these servers.
 servers:
   web:
@@ -31,14 +38,15 @@ servers:
       # It could be the settings have been modified - check with devops
       traefik.http.routers.nuxt-3-template.middlewares: addCustomHeaders
       traefik.http.middlewares.addCustomHeaders.headers.customrequestheaders.X-Forwarded-Proto: https
+
 env:
   clear:
-      RAILS_API_SERVER: http://localhost:3000
-      SITE_TITLE: Nuxt 3 Template
-      SITE_DESCRIPTION: It is the WCMC Nuxt 3 template
+    AUTH_ORIGIN: https://nuxt-3-template.new-web-supported-staging.linode.unep-wcmc.org
+    NUXT_RAILS_API_SERVER: path to rails
+    NUXT_PUBLIC_RAILS_API_SERVER: path to rails
+    NUXT_PUBLIC_WCMC_MODULES_WCMC_USER_MANAGEMENT_RAILS_API_SERVER: path to rails
   secret:
-    - AUTH_ORIGIN
-    - AZURE_AD_CLIENT_ID
-    - AZURE_AD_CLIENT_SECRET
-    - AZURE_AD_TENANT_ID
-    - NUXT_SECRET
+    - NUXT_WCMC_MODULES_WCMC_USER_MANAGEMENT_AZURE_AD_CLIENT_ID
+    - NUXT_WCMC_MODULES_WCMC_USER_MANAGEMENT_AZURE_AD_CLIENT_SECRET
+    - NUXT_WCMC_MODULES_WCMC_USER_MANAGEMENT_AZURE_AD_TENANT_ID
+    - NUXT_WCMC_MODULES_WCMC_USER_MANAGEMENT_SECRET

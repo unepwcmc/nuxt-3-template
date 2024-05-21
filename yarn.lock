@@ -1746,7 +1746,7 @@
     which "^3.0.1"
     ws "^8.16.0"
 
-"@nuxt/kit@3.11.2", "@nuxt/kit@^3.10.1", "@nuxt/kit@^3.10.2", "@nuxt/kit@^3.10.3", "@nuxt/kit@^3.11.1", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.8.2", "@nuxt/kit@^3.9.0", "@nuxt/kit@^3.9.3":
+"@nuxt/kit@3.11.2", "@nuxt/kit@^3.10.1", "@nuxt/kit@^3.10.2", "@nuxt/kit@^3.10.3", "@nuxt/kit@^3.11.1", "@nuxt/kit@^3.11.2", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.8.2", "@nuxt/kit@^3.9.0", "@nuxt/kit@^3.9.3":
   version "3.11.2"
   resolved "https://registry.npmjs.org/@nuxt/kit/-/kit-3.11.2.tgz#dfc43c05992691bcd6aa58c14f88cf43e3abb788"
   integrity sha512-yiYKP0ZWMW7T3TCmsv4H8+jEsB/nFriRAR8bKoSqSV9bkVYWPE36sf7JDux30dQ91jSlQG6LQkB3vCHYTS2cIg==
@@ -2303,18 +2303,18 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.14.1.tgz#299eee74b7d87e116083ac5b1ce8dd9434668294"
   integrity sha512-wQGI+LY/Py20zdUPq+XCem7JcPOyzIJBm3dli+56DJsQOHbnXZFEwgmnC6el1TPAfC8lBT3m+z69RmLykNUbew==
 
-"@sidebase/nuxt-auth@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/@sidebase/nuxt-auth/-/nuxt-auth-0.7.0.tgz#d2faa217eabf9cbd6a80955a5cd14bdcd9105a46"
-  integrity sha512-831YTa4KL1+o/WQ0keTWCRoib7QifKNc+DOk88aH4jqFE9JDGDRoZHzTTFP0ju6znX5Vh3jmRtiy2zFS3UJjLA==
+"@sidebase/nuxt-auth@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.npmjs.org/@sidebase/nuxt-auth/-/nuxt-auth-0.7.2.tgz#a1f176a4ce1b9730e153e0fb7e6495773308a256"
+  integrity sha512-0f/DxRvDKFBwg5jR85KMeuVGQSygnDl3LOFeXnEHOS3A9SnJLE8najNooq7DbQB6lB8dl+vDpguVNH+V92TiHg==
   dependencies:
-    "@nuxt/kit" "^3.10.3"
+    "@nuxt/kit" "^3.11.2"
     defu "^6.1.4"
     h3 "^1.11.1"
-    knitwork "^1.0.0"
-    nitropack "^2.9.1"
+    knitwork "^1.1.0"
+    nitropack "^2.9.6"
     requrl "^3.0.2"
-    ufo "^1.4.0"
+    ufo "^1.5.3"
 
 "@sigstore/bundle@^2.3.0", "@sigstore/bundle@^2.3.1":
   version "2.3.1"
@@ -2589,25 +2589,25 @@
     "@typescript-eslint/types" "6.21.0"
     eslint-visitor-keys "^3.4.1"
 
-"@unepwcmc/interactive-table@0.0.11":
-  version "0.0.11"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.11/07d831a38e188ed69a6ca4a63fd4d890ed418e52#07d831a38e188ed69a6ca4a63fd4d890ed418e52"
-  integrity sha512-7G2tahKLH0sg1d9EYeIzXbzi72/+1IS6MD2WDCfAU6+NTKQtLW2YN+G+NFE8lknePjd2FTV70dHbWokvoUBjDg==
+"@unepwcmc/interactive-table@0.0.12":
+  version "0.0.12"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/interactive-table/0.0.12/4c69ccd7e9403624990b99267ed9db95c447e117#4c69ccd7e9403624990b99267ed9db95c447e117"
+  integrity sha512-azS7QqMHUHK5pj24Hm2lv3BnBQXQSzjeLV5yYMTfor8jIn0ZR5oYgN67r8EFSrI+SZ3OPoccm5w21FAxUSO8SA==
   dependencies:
     lodash "^4.17.21"
     pinia "^2.1.7"
     vue "^3.4.15"
 
-"@unepwcmc/user-management@0.0.30":
-  version "0.0.30"
-  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.30/264220f1a71ea2078d60636b7c6ccade83b9b879#264220f1a71ea2078d60636b7c6ccade83b9b879"
-  integrity sha512-RXferPz2b8beZwL6QxYFnXxfJqOyzmY8VmCJ/vBJImC9D8u7mai2cWBENRkDwBiM4AZpN4Gm8Brtj3r0gdTh5g==
+"@unepwcmc/user-management@0.0.47":
+  version "0.0.47"
+  resolved "https://npm.pkg.github.com/download/@unepwcmc/user-management/0.0.47/6c71743982ea9020faee3d121b064b314fd15515#6c71743982ea9020faee3d121b064b314fd15515"
+  integrity sha512-dFs6hBSGILvPuI+dUpl0xj/kfS9/tGidp7VJBG9BjwZB4fuuN95G3wXbDW9ww6xK7KgbJtLFkLuBEkIcgrYNFw==
   dependencies:
     "@formkit/core" "^1.4.0"
     "@nuxt/kit" "^3.10.2"
-    "@sidebase/nuxt-auth" "0.7.0"
-    "@unepwcmc/interactive-table" "0.0.11"
-    next-auth "~4.21.1"
+    "@sidebase/nuxt-auth" "0.7.2"
+    "@unepwcmc/interactive-table" "0.0.12"
+    next-auth "4.21.1"
 
 "@ungap/structured-clone@^1.2.0":
   version "1.2.0"
@@ -6766,7 +6766,7 @@ negotiator@0.6.3, negotiator@^0.6.3:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-next-auth@~4.21.1:
+next-auth@4.21.1:
   version "4.21.1"
   resolved "https://registry.npmjs.org/next-auth/-/next-auth-4.21.1.tgz#8db520395b2c697bd1259b76831d319728f0d50d"
   integrity sha512-NYkU4jAPSVxWhCblE8dDFAnKM7kOoO/QEobQ0RoEVP9Wox99A3PKHwOAsWhSg8ahJG/iKIWk2Bo1xHvsS4R39Q==
@@ -6781,7 +6781,7 @@ next-auth@~4.21.1:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-nitropack@^2.9.1, nitropack@^2.9.6:
+nitropack@^2.9.6:
   version "2.9.6"
   resolved "https://registry.npmjs.org/nitropack/-/nitropack-2.9.6.tgz#90af114b796872f34e125e780e6148525149769f"
   integrity sha512-HP2PE0dREcDIBVkL8Zm6eVyrDd10/GI9hTL00PHvjUM8I9Y/2cv73wRDmxNyInfrx/CJKHATb2U/pQrqpzJyXA==
