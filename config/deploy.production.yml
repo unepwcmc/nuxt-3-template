@@ -8,7 +8,29 @@ servers:
       - new-web-supported-production.linode.unep-wcmc.org
     labels:
       traefik.http.routers.nuxt-3-template.rule: Host(`nuxt-3-template.new-web-supported-production.linode.unep-wcmc.org`)
+      # The following is purely to overwrite X-Forwarded-Proto from http to https
+      # Because of the current infrustructure setup we have Nginx - Traefik - Docker - App
+      # For Nginx it redirects all traffic to Traefik and Nginx appends the following headers
+      # "x-real-ip": "xxx.xxx.xxx.xxx",
+      # "x-forwarded-for": "xxx.xxx.xxx.xxx",
+      # "x-forwarded-proto": "https",
+      # then in Trafik because when Nginx redirects it is using http not https so Traefik overwrites the headers above to whatever that should be and x-forwarded-proto to http
+      # read here for more info https://doc.traefik.io/traefik/getting-started/faq/#what-are-the-forwarded-headers-when-proxying-http-requests
+      # For nuxt-auth for some reason when "x-forwarded-proto" is "http" then in Nuxt server side the {status} = useAuth() becomes unauthenticated
+      # so it would redirect users to login page when refreshing a protected page.
+      # the solution for this is to add trusted IPs and then overwrite X-Forwarded-Proto: https to https (see middlewares above)
+      # If one day WCMC don't use Nginx to handle proxy settings instead using Traefik then this solution can be removed
+      # https://doc.traefik.io/traefik/routing/entrypoints/#forwarded-headers
 
+      # If at some point you realise the following code doesn't overwrite X-Forwarded-Proto to https then check
+      # https://github.com/unepwcmc/kamal-deploy-accessories/blob/main/config/deploy.new-web-supported-staging.linode.unep-wcmc.org.yml
+      # look out for
+      # args
+      #  xxx.insecure
+      #  xxx.trustedIPs
+      # It could be the settings have been modified - check with devops
+      traefik.http.routers.nuxt-3-template.middlewares: addCustomHeaders
+      traefik.http.middlewares.addCustomHeaders.headers.customrequestheaders.X-Forwarded-Proto: https
 env:
   clear:
       RAILS_API_SERVER: http://localhost:3000
