@@ -27,7 +27,7 @@ yarn preview
 yarn build && yarn start
 ```
 
-or you can use pm2 to run the production server there is a [ecosystem.config.cjs](./ecosystem.config.cjs) for you to test
+or you can use pm2 to run the production server there is a [ecosystem.config.cjs](./ecosystem.config.cjs) for you to test. Only use PM2 for running production mode for testing locally. Please use kamal for deployment for running production server
 
 - Update [ecosystem.config.cjs](./ecosystem.config.cjs)
 - Run `yarn pm2` - to start the app on PM2
