@@ -5,6 +5,8 @@ node_modules
 .cache
 .output
 .env
+.env.staging
+.env.production
 dist
 .DS_Store
 .fleet
@@ -12,3 +14,5 @@ dist
 .stylelintcache
 .yalc/*
 yalc.lock
+.env-docker
+

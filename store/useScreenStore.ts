@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import screenBreakpoints from '@/tailwind/tailwind-breakpoints.config'
 
-const convertScreenSize = (size:string) => parseInt(String(size).replace('px', ''))
+const convertScreenSize = (size: string) => parseInt(String(size).replace('px', ''))
 export const useScreenStore = defineStore('screenStore', () => {
   const screenBreakpointMD = convertScreenSize(screenBreakpoints.md)
   const screenBreakpointLG = convertScreenSize(screenBreakpoints.lg)
@@ -29,7 +29,6 @@ export const useScreenStore = defineStore('screenStore', () => {
       }
     })
   })
-
   return {
     windowSize,
     isMobile,

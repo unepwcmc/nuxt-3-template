@@ -23,6 +23,9 @@ export default defineNuxtConfig({
        * */
     ]
   },
+  typescript: {
+		strict: true,
+	},
   devtools: { enabled: true },
   app: {
     // https://nuxt.com/docs/getting-started/seo-meta#title-template
@@ -59,10 +62,11 @@ export default defineNuxtConfig({
     noscript: [{ children: 'Javascript is required' }]
   },
   modules: [
-    '@vite-pwa/nuxt',
+    "@vite-pwa/nuxt",
+		"@vueuse/nuxt",
     '@nuxt/test-utils/module',
     '@nuxtjs/stylelint-module',
-    ['@nuxtjs/eslint-module', { fix: true }],
+    "@nuxt/eslint",
     ['@pinia/nuxt', { disableVuex: false }],
     '@unepwcmc/user-management',
     /*
@@ -74,6 +78,11 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@formkit/nuxt' // You can comment this out if you don't plan to use formkit. It is a powerful/easy to use tool to simplyfy form elements. https://formkit.com/
   ],
+  eslint: {
+		config: {
+			stylistic: true,
+		},
+	},
   formkit: {
     configFile: './formkit/formkit.config.ts'
   },
@@ -103,7 +112,8 @@ export default defineNuxtConfig({
         signIn: '/en/sign-in',
         signOut: '/en/sign-out',
         error: '/en/sign-in',
-        passwordReset: { name: 'password-reset' } // Or /password-reset
+        passwordReset: { name: 'password-reset' }, // Or /password-reset
+        viewUserRoles: { name: "admin-user-roles" }
       }
     }
   },
@@ -166,5 +176,10 @@ export default defineNuxtConfig({
     componentIslands: true
   },
   alias: {},
-  dirs: ['types/**/*.ts']// Auto import all types
+  // Auto import all types in ./types.ts
+  imports: {
+		dirs: ["types/**/*.ts", "store"],
+		global: true
+	},
+	compatibilityDate: "2024-07-30",
 })

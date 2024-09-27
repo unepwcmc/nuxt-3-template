@@ -4,34 +4,35 @@
     - This file is precompiled in tailwind.config.ts
     - If you change any elements in this file and you do not see the changes then please remove all compiled i,e .nuxt folder and restart server to trigger compile in tailwind.config.ts
 */
-
+.disabled{
+  &__default{
+    @apply  disabled:bg-theme-disabled disabled:hover:bg-theme-disabled disabled:cursor-not-allowed;
+  }
+}
 .body-text-1 {
   /* mobile tablet desktop */
   @apply text-sm not-italic font-semibold md:text-base lg:text-base;
 }
 .button {
-  @apply
+  &__default {
+    @apply flex
+    items-center
+    justify-center
+    p-2
+    md:p-3
+    rounded-[0.3125rem]
     bg-theme-primary
+  text-white
+    text-sm
+    md:text-lg
+    cursor-pointer
     hover:bg-theme-secondary
-    text-white
-    text-center
-    hover:border-theme-secondary
-    font-bold
-    text-[16px]
-    w-[69px]
-    h-[36px]
-    md:w-[117px]
-    md:h-[43px]
-    p-[6px]
-    md:py-[12px]
-    md:px-[36px];
+    disabled__default;
 
-  &--disabled{
-      @apply
-      bg-[#d9d9d9]
-      hover:bg-[#d9d9d9]
-      cursor-not-allowed;
+    &--disabled {
+      @apply  bg-theme-disabled hover:bg-theme-disabled cursor-not-allowed disabled__default;
     }
+  }
 }
 
 /* Mainly the style used for formkit components look into ~/formkit/tailwind-formkit.ts for more details */

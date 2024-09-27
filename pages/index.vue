@@ -1,24 +1,24 @@
 <template>
-  <div class="page-index">
-    <h1
-      v-if="te('title')"
-      class="page-index__title"
-      v-text="t('title')"
-    />
+	<div class="page-index">
+		<h1
+			v-if="te('title')"
+			class="page-index__title"
+			v-text="t('title')"
+		/>
 
-    <hr>
-  </div>
+		<hr>
+	</div>
 </template>
 
 <script setup lang="ts">
-const pageTitle = ref('Home')
+const pageTitle = ref("Home")
 
 useHead({
-  title: pageTitle
+	title: pageTitle
 })
 
 definePageMeta({
-  auth: false
+	auth: false
 })
 const { status, data } = useAuth()
 const { t, te } = useI18n()
@@ -34,7 +34,7 @@ console.log(status.value, data.value)
   }
 
   &__log-in-out {
-    @apply button w-40 ;
+    @apply button__default w-40 ;
   }
 }
 </style>

@@ -19,7 +19,7 @@ RUN npm config set //$REGISTRY_FOR_AUTH_TOKEN/:_authToken $GITHUB_TOKEN
 WORKDIR /nuxt-app
 
 # Copy source code
-COPY . /nuxt-app
+COPY . .
 
 # Yarn install
 RUN yarn install
@@ -28,5 +28,9 @@ RUN yarn install
 RUN yarn build
 
 EXPOSE 3000
-# Start server
-CMD ["yarn", "start"]
+
+# Run in production mode
+ENV NODE_ENV=production
+
+# start the app
+CMD [ "yarn", "start" ]

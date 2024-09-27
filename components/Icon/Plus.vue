@@ -1,11 +1,11 @@
 <template>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 24 17"
+		viewBox="0 0 17 16"
 		fill="none"
 	>
 		<path
-			d="M0 9.64286V7.35714H24V9.64286H0ZM0 16.5V14.2143H24V16.5H0ZM0 2.78571V0.5H24V2.78571H0Z"
+			d="M6.99976 0V6.58814H0.411621V9.41186H6.99976V16H9.82349V9.41186H16.4116V6.58814H9.82349V0H6.99976Z"
 			fill="currentColor"
 		/>
 	</svg>

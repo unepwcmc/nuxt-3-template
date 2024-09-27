@@ -1,30 +1,30 @@
 <template>
-  <div class="layout-header">
-    <div class="layout-header__container">
-      <NuxtLink
-        :to="localePath({name:'index'})"
-      >
-        <img
-          class="layout-header__logo"
-          src="/img/UNEP-WCMC_white.png"
-        >
-      </NuxtLink>
-      <LayoutNavigationMobile
-        v-if="isTablet|| isMobile"
-        v-bind="{links:mainMenuItems}"
-        class="layout-header__menu layout-header__menu--mobile"
-      />
-      <LayoutNavigationDesktop
-        v-else
-        v-bind="{links:mainMenuItems}"
-        class="layout-header__menu layout-header__menu--desktop"
-      />
-    </div>
-  </div>
+	<div class="layout-header">
+		<div class="layout-header__container">
+			<NuxtLink
+				:to="localePath({ name: 'index' })"
+			>
+				<img
+					class="layout-header__logo"
+					src="/img/UNEP-WCMC_white.png"
+				>
+			</NuxtLink>
+			<LayoutNavigationMobile
+				v-if="isTablet|| isMobile"
+				v-bind="{ links: mainMenuItems }"
+				class="layout-header__menu layout-header__menu--mobile"
+			/>
+			<LayoutNavigationDesktop
+				v-else
+				v-bind="{ links: mainMenuItems }"
+				class="layout-header__menu layout-header__menu--desktop"
+			/>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
-import { useScreenStore } from '@/store/useScreenStore'
+import { useScreenStore } from "@/store/useScreenStore"
 
 const localePath = useLocalePath()
 const { mainMenuItems } = useNavigation()

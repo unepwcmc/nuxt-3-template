@@ -1,34 +1,48 @@
 <template>
-  <div>
-    <button @click="toggleMobileNavigation(true)">
-      <IconBurger class="layout-navigation-mobile__burger" />
-    </button>
-    <nav v-if="openMobileNavigation" class="layout-navigation-mobile">
-      <button class="layout-navigation-mobile__go-back-button" @click="goBack()">
-        <IconArrowRight class="layout-navigation-mobile__go-back-button-icon" />
-        <span class="layout-navigation-mobile__go-back-button-text" v-text="t('buttons.back')" />
-      </button>
-      <ul class="layout-navigation-mobile__items">
-        <li
-          v-for="(link, linkIndex) in currentMenu"
-          :key="linkIndex"
-          class="layout-navigation-mobile__item"
-          :class="{ 'layout-navigation-mobile__item--active': route.path === localePath(link.path) }"
-        >
-          <button
-            v-if="Array.isArray(link.sub)"
-            class="layout-navigation-mobile__link layout-navigation-mobile__link--button"
-            @click="openSubMenu(link)"
-          >
-            <span v-text="link.title" />
-          </button>
-          <NuxtLink v-else class="layout-navigation-mobile__link" :to="localePath(link.path)" @click="afterClick(link)">
-            <span v-text="link.title" />
-          </NuxtLink>
-        </li>
-      </ul>
-    </nav>
-  </div>
+	<div>
+		<button @click="toggleMobileNavigation(true)">
+			<IconBurger class="layout-navigation-mobile__burger" />
+		</button>
+		<nav
+			v-if="openMobileNavigation"
+			class="layout-navigation-mobile"
+		>
+			<button
+				class="layout-navigation-mobile__go-back-button"
+				@click="goBack()"
+			>
+				<IconArrowLeft class="layout-navigation-mobile__go-back-button-icon" />
+				<span
+					class="layout-navigation-mobile__go-back-button-text"
+					v-text="t('button.back')"
+				/>
+			</button>
+			<ul class="layout-navigation-mobile__items">
+				<li
+					v-for="(link, linkIndex) in currentMenu"
+					:key="linkIndex"
+					class="layout-navigation-mobile__item"
+					:class="{ 'layout-navigation-mobile__item--active': route.path === link.path }"
+					@click="openSubMenu(link)"
+				>
+					<button
+						v-if="Array.isArray(link.sub)"
+						class="layout-navigation-mobile__link layout-navigation-mobile__link--button"
+					>
+						<span v-text="link.title" />
+					</button>
+					<NuxtLink
+						v-else
+						class="layout-navigation-mobile__link"
+						:to="link.path"
+						@click="afterClick()"
+					>
+						<span v-text="link.title" />
+					</NuxtLink>
+				</li>
+			</ul>
+		</nav>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -36,27 +50,35 @@ const props = defineProps<{ links: MenuItem[] }>()
 const route = useRoute()
 const { t } = useI18n()
 const openMobileNavigation = ref(false)
-const subMenu = ref<{ links: MenuItem[] }>([])
+const subMenu = ref<MenuItem[]>([])
 const currentMenu = computed(() => subMenu.value.length > 0 ? subMenu.value : props.links)
-function toggleMobileNavigation (afterClick) {
-  if (afterClick !== undefined) {
-    openMobileNavigation.value = afterClick
-  } else { openMobileNavigation.value = !openMobileNavigation.value }
+function toggleMobileNavigation(afterClick?: boolean) {
+	if (afterClick !== undefined) {
+		openMobileNavigation.value = afterClick
+	}
+	else { openMobileNavigation.value = !openMobileNavigation.value }
 }
-function openSubMenu (_subMenu: MenuItem[]) {
-  const parentLink = { ..._subMenu }
-  delete parentLink.sub
-  subMenu.value = [parentLink, ..._subMenu.sub]
+function openSubMenu(_subMenu: MenuItem) {
+	if (Array.isArray(_subMenu.sub)) {
+		const parentLink = { ..._subMenu }
+		delete parentLink.sub
+		subMenu.value = [parentLink]
+		if (_subMenu.sub) {
+			subMenu.value.push(..._subMenu.sub)
+		}
+	}
 }
-function afterClick () {
-  openMobileNavigation.value = !openMobileNavigation.value
+function afterClick() {
+	openMobileNavigation.value = !openMobileNavigation.value
+	subMenu.value = []
 }
-function goBack () {
-  if (subMenu.value.length === 0) {
-    toggleMobileNavigation(false)
-  } else {
-    subMenu.value = []
-  }
+function goBack() {
+	if (subMenu.value.length === 0) {
+		toggleMobileNavigation(false)
+	}
+	else {
+		subMenu.value = []
+	}
 }
 </script>
 

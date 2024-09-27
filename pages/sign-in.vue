@@ -1,53 +1,67 @@
 <template>
-  <div class="page-sign-in">
-    <UserManagementSignIn
-      class="page-sign-in__component"
-      v-bind="{
-        defaultStyle: 1, // Optional, Hide this prop if you are using your own styles
-        redirectLinkAfterSignIn // Optional, You can set redirectLinkAfterSignIn with the path i,e localePath({ name: 'test' }, localePath('test')
-      }"
-      @after-signin-successful="afterSignInSuccessful"
-    >
-      <template #passwordResetLink>
-        <span class="page-sign-in__password-reset">
-          <span class="page-sign-in__password-reset--title" v-text="t('signIn.passwordReset.title')" />
-          <NuxtLink class="page-sign-in__password-reset--link" :to="localePath({ name: 'password-reset' })">
-            <span v-text="t('signIn.passwordReset.link') " />
-          </NuxtLink>
-        </span>
-      </template>
-    </UserManagementSignIn>
-    <NuxtLink class="page-sign-in__password-reset--link" :to="localePath({ name: 'password-reset' })">
-      <span v-text="t('signIn.passwordReset.link') " />
-    </NuxtLink>
-  </div>
+	<div class="page-sign-in">
+		<UserManagementSignIn
+			class="page-sign-in__component"
+			v-bind="{
+				useDefaultStyle: 1, // Optional, Hide this prop if you are using your own styles
+				redirectLinkAfterSignIn // Optional, You can set redirectLinkAfterSignIn with the path i,e localePath({ name: 'test' }, localePath('test')
+			}"
+			@after-signin-successful="afterSignInSuccessful"
+		>
+			<template #passwordResetLink>
+				<span class="page-sign-in__password-reset">
+					<span
+						class="page-sign-in__password-reset--title"
+						v-text="t('signIn.passwordReset.title')"
+					/>
+					<NuxtLink
+						class="page-sign-in__password-reset--link"
+						:to="localePath({ name: 'password-reset' })"
+					>
+						<span v-text="t('signIn.passwordReset.link') " />
+					</NuxtLink>
+				</span>
+			</template>
+		</UserManagementSignIn>
+		<NuxtLink
+			class="page-sign-in__password-reset--link"
+			:to="localePath({ name: 'password-reset' })"
+		>
+			<span v-text="t('signIn.passwordReset.link') " />
+		</NuxtLink>
+	</div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  auth: {
-    /**
+	auth: {
+		/**
      * By default, when we are not logged in and access a page then nuxt-auth would redirect us to this page
      * so we will have to set unauthenticatedOnly to true to make this page accessible
      */
-    unauthenticatedOnly: true
-  }
+		unauthenticatedOnly: true
+	}
 })
 const i18n = useI18n()
 const { t } = i18n
 const localePath = useLocalePath()
 const route = useRoute()
 const callbackurl = computed(() => {
-  // to get callback path
-  try {
-    if (route.query?.callbackUrl) { return new URL(route.query.callbackUrl) }
-  } catch (error) { }
-  return undefined
+	// to get callback path
+	try {
+		if (route.query?.callbackUrl) {
+			return new URL(route.query.callbackUrl)
+		}
+	}
+	catch {
+		console.warn("callbackUrl is not valid")
+	}
+	return undefined
 })
-const redirectLinkAfterSignIn = computed(() => callbackurl.value?.pathname || localePath({ name: 'index' }))
+const redirectLinkAfterSignIn = computed(() => callbackurl.value?.pathname || localePath({ name: "index" }))
 
-async function afterSignInSuccessful () {
-  /**
+async function afterSignInSuccessful() {
+	/**
    * By default because we set unauthenticatedOnly to true so after logging in successfully we will be redirected to home page.
    * if you want to go to a specific page then either
    * set defaultrRedirectLinkAfterSignIn with the path i,e localePath({ name: 'test' }, localePath('test')
@@ -55,8 +69,8 @@ async function afterSignInSuccessful () {
    * set unauthenticatedOnly to false and
    * put navigateTo(localePath({ name: 'your page names' })) in this function
    *  */
-  // const localePath = useLocalePath()
-  // navigateTo(localePath({ name: 'index' }))
+	// const localePath = useLocalePath()
+	// navigateTo(localePath({ name: 'index' }))
 }
 </script>
 
@@ -72,5 +86,4 @@ async function afterSignInSuccessful () {
     @apply flex gap-1;
   }
 }
-
 </style>

@@ -1,50 +1,49 @@
 <template>
-  <ul class="layout-navigation-desktop__items">
-    <li
-      v-for="(link, linkIndex) in links"
-      :key="linkIndex"
-      class="layout-navigation-desktop__item"
-      :class="{ 'layout-navigation-desktop__item--active': route.path.includes(localePath(link.path)) }"
-      @mouseenter="toggleModal(link)"
-      @mouseleave="toggleModal()"
-    >
-      <NuxtLink
-        class="layout-navigation-desktop__link"
-        :to="localePath(link.path)"
-      >
-        <span v-text="link.title" />
-      </NuxtLink>
-      <ul
-        v-show="Array.isArray(link.sub) && currentOpenSubMenu === link"
-        class="layout-navigation-desktop__sub-menu"
-      >
-        <li
-          v-for="(subLink, index) in link.sub"
-          :key="`${index}subLink`"
-          class="layout-navigation-desktop__item layout-navigation-desktop__item--bottom-border"
-          :class="{ 'layout-navigation-desktop__item--active': route.path === localePath(subLink.path) }"
-        >
-          <NuxtLink
-            class="layout-navigation-desktop__link"
-            :to="localePath(subLink.path)"
-          >
-            <span v-text="subLink.title" />
-          </NuxtLink>
-        </li>
-      </ul>
-    </li>
-  </ul>
+	<ul class="layout-navigation-desktop__items">
+		<li
+			v-for="(link, linkIndex) in links"
+			:key="linkIndex"
+			class="layout-navigation-desktop__item"
+			:class="{ 'layout-navigation-desktop__item--active': route.path.includes(link.path) }"
+			@mouseenter="toggleModal(link)"
+			@mouseleave="toggleModal()"
+		>
+			<NuxtLink
+				class="layout-navigation-desktop__link"
+				:to="link.path"
+			>
+				<span v-text="link.title" />
+			</NuxtLink>
+			<ul
+				v-show="Array.isArray(link.sub) && currentOpenSubMenu?.path === link.path"
+				class="layout-navigation-desktop__sub-menu"
+			>
+				<li
+					v-for="(subLink, index) in link.sub"
+					:key="`${index}subLink`"
+					class="layout-navigation-desktop__item layout-navigation-desktop__item--bottom-border"
+					:class="{ 'layout-navigation-desktop__item--active': route.path.includes(subLink.path) }"
+				>
+					<NuxtLink
+						class="layout-navigation-desktop__link"
+						:to="subLink.path"
+					>
+						<span v-text="subLink.title" />
+					</NuxtLink>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  links: MenuItem[]
+	links: MenuItem[]
 }>()
 const route = useRoute()
-const localePath = useLocalePath()
 const currentOpenSubMenu = ref<MenuItem | undefined>()
-function toggleModal (menuItem: MenuItem | undefined) {
-  currentOpenSubMenu.value = menuItem
+function toggleModal(menuItem?: MenuItem) {
+	currentOpenSubMenu.value = menuItem
 }
 </script>
 
