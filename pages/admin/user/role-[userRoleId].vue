@@ -18,10 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import { usePolicyStore } from "@/store/usePolicyStore"
-
-const _BUTTON_GOTO = BUTTON_GOTO
-const { currentUserHasThePolicies, currentUserHasThePolicy } = usePolicyStore()
+const _BUTTON_GOTO = BUTTON_GOTO // Defined in ~/types/xxx.ts
+const { policyStore } = useWcmcUserManagementPolicy()
+const { currentUserHasThePolicies, currentUserHasThePolicy } = policyStore()
 const { userDetails } = useWcmcUserManagementAuth()
 
 definePageMeta({

@@ -38,8 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePolicyStore } from "@/store/usePolicyStore"
-
 const _POLICY_NAMES_LIST = POLICY_NAMES_LIST
 const localePath = useLocalePath()
 const errorList = ref<string[]>([])
@@ -50,7 +48,8 @@ useHead({
 function errorOccured(errors: string[]) {
 	errorList.value = errors
 }
-const { currentUserHasThePolicy } = usePolicyStore()
+const { policyStore } = useWcmcUserManagementPolicy()
+const { currentUserHasThePolicy } = policyStore()
 definePageMeta({
 	checkPolicies: {
 		checkThesePoliciesIfCurrentUserCanDo: [

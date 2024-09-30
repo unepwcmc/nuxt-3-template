@@ -1,9 +1,9 @@
-function getFreshText () {
+function getFreshText() {
 
 }
 
-export function useCommonTestFns () {
-  return {
-    getFreshText
-  }
+export function useCommonTestFns() {
+	return {
+		getFreshText
+	}
 }

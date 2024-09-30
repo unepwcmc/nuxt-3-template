@@ -1,18 +1,18 @@
 <template>
-  <footer class="ct-layout-footer">
-    <span class="ct-layout-footer__copyright">
-      <span v-text="'&copy;'" />
-      <span
-        v-if="te('component.PageFooter.copyright')"
-        v-text="t('component.PageFooter.copyright')"
-      />
-      <span v-text="currentYear" />
-    </span>
-    <img
-      class="ct-layout-footer__logo"
-      src="/img/UNEP-WCMC_white.png"
-    >
-  </footer>
+	<footer class="ct-layout-footer">
+		<span class="ct-layout-footer__copyright">
+			<span v-text="'&copy;'" />
+			<span
+				v-if="te('component.PageFooter.copyright')"
+				v-text="t('component.PageFooter.copyright')"
+			/>
+			<span v-text="currentYear" />
+		</span>
+		<img
+			class="ct-layout-footer__logo"
+			src="/img/UNEP-WCMC_white.png"
+		>
+	</footer>
 </template>
 
 <script setup lang="ts">

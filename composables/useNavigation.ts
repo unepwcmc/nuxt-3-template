@@ -1,5 +1,3 @@
-import { usePolicyStore } from "@/store/usePolicyStore"
-
 /**
 	 * Be careful as we don't do await (in setup) for checkPolicies
 	 * If anything (menu items) you don't want people to see before policiesCurrentUserHas is updated then you need to return empty first.
@@ -7,8 +5,8 @@ import { usePolicyStore } from "@/store/usePolicyStore"
 	 * If policy check is needed for any menu items below then you need to add it to checkPolicies() otherwise it will never show up!!!!
 	 *  */
 function checkPolicies() {
-	const policyStore = usePolicyStore()
-	const { checkPoliciesWithServer } = policyStore
+	const { policyStore } = useWcmcUserManagementPolicy()
+	const { checkPoliciesWithServer } = policyStore()
 	const { status } = useWcmcUserManagementAuth()
 	if (status.value === "authenticated") {
 		checkPoliciesWithServer([POLICY_NAMES_LIST.USERS_DATA_LIST, POLICY_NAMES_LIST.ROLES_DATA_LIST])
@@ -16,9 +14,9 @@ function checkPolicies() {
 }
 function getAdminMenuItems() {
 	const { t } = useI18n()
-	const policyStore = usePolicyStore()
+	const { policyStore } = useWcmcUserManagementPolicy()
 	const localePath = useLocalePath()
-	const { policiesCurrentUserHas } = storeToRefs(policyStore)
+	const { policiesCurrentUserHas } = storeToRefs(policyStore())
 	return computed<MenuItem[]>(() => {
 		const _adminMenuItems: MenuItem[] = []
 		if (policiesCurrentUserHas.value.includes(POLICY_NAMES_LIST.USERS_DATA_LIST)) {

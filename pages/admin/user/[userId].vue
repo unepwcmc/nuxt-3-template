@@ -26,14 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { usePolicyStore } from "~/store/usePolicyStore"
-
 const _BUTTON_GOTO = BUTTON_GOTO
 const { params } = useRoute()
 const localePath = useLocalePath()
 const { userDetails } = useWcmcUserManagementAuth()
 const { t } = useI18n()
-const { currentUserHasThePolicy } = usePolicyStore()
+const { policyStore } = useWcmcUserManagementPolicy()
+const { currentUserHasThePolicy } = policyStore()
 const currentParams = computed(() => {
 	return {
 		params,

@@ -1,13 +1,13 @@
-import type { RouteLocationNamedRaw } from '#vue-router'
+import type { RouteLocationNamedRaw } from "#vue-router"
 
 declare global {
   type MenuBasic = {
-    path: RouteLocationNamedRaw;
-    title: string;
-  };
+  	path: RouteLocationNamedRaw
+  	title: string
+  }
   type MenuItem = {
-    sub: MenuBasic[];
-  } & MenuBasic;
+  	sub: MenuBasic[]
+  } & MenuBasic
 }
 
 export {}

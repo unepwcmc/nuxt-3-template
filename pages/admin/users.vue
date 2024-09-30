@@ -76,7 +76,8 @@
 <script lang="ts" setup>
 import type { InteractiveTableConfigurations } from "@unepwcmc/interactive-table"
 import type { GetCreateNewUserAttributes } from "@unepwcmc/user-management/types"
-import { usePolicyStore } from "@/store/usePolicyStore"
+
+const { policyStore } = useWcmcUserManagementPolicy()
 
 definePageMeta({
 	checkPolicies: {
@@ -94,11 +95,33 @@ definePageMeta({
 		}
 	}
 })
+
+/**
+ * In your page if you need to do more checks before deciding if an user can visit the page or not then you can do following
+ */
+// const { redirectTo } = policyStore()
+// // Method 1
+// redirectTo({
+// 	whenFailedInThesePolicies: [POLICY_NAMES_LIST.XXXXX],
+// 	to: { name: "index" },
+// })
+// // Method 2
+// const { currentUserHasThePolicies } = policyStore()
+
+// // don't have policy A and B
+// if (!currentUserHasThePolicies([
+// 	POLICY_NAMES_LIST.A,
+// 	POLICY_NAMES_LIST.B
+// ])) {
+// 	navigateTo({
+// 		name: "index"
+// 	})
+// }
 const { t } = useI18n()
 useHead({
 	title: t("navigation.user.users")
 })
-const { currentUserHasThePolicy, currentUserHasThePolicies } = usePolicyStore()
+const { currentUserHasThePolicy, currentUserHasThePolicies } = policyStore()
 const localePath = useLocalePath()
 const allowedActions = computed(() => ({
 	viewUsersList: currentUserHasThePolicy(POLICY_NAMES_LIST.USERS_DATA_LIST),
