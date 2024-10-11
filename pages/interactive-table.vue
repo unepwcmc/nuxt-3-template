@@ -29,13 +29,12 @@ import type {
 	EmitArchiveRestoreConfig,
 	EmitTableAction,
 	EmitUpdateTable,
-	DataQueryDataReturn
+	DataQueryModelAssociatedDataReturn,
+	FiltersModelAssociatedData
 } from "@unepwcmc/interactive-table"
-import type {
-	UsersAssociatedData,
-	UsersModelData
-} from "@unepwcmc/user-management"
+
 import { InteractiveTable } from "@unepwcmc/interactive-table"
+import type { RailsAPIErrorResponse } from "@unepwcmc/user-management/types"
 
 const i18n = useI18n()
 const config = useRuntimeConfig()
@@ -47,17 +46,21 @@ const {
 const { fetch } = useWcmcUserManagementRailsFetch()
 const railsAPIs = getRailsAPIPaths(config)
 const tableConfigurations = ref(getUserManagementTableConfig({ i18n, useDefaultStyle: 1 }))
-const usersList = ref<DataQueryDataReturn<"users", UsersModelData, UsersAssociatedData> | undefined>()
+// So you can see the table config
+console.log(tableConfigurations.value)
+// DataQueryModelAssociatedDataReturn the fist unknown should be the model data type, second unknown should be associated data type
+type UserList = DataQueryModelAssociatedDataReturn<"users", unknown, unknown> | undefined
+const usersList = ref<UserList | undefined>()
 const errorList = ref< string[]>([])
 
 async function archiveRestoreCurrentRow(archiveRestoreCurrentRowInfo: EmitTableAction<EmitArchiveRestoreConfig>) {
 	setTableBusy(true)
-	const row = archiveRestoreCurrentRowInfo.row.model_data as UsersModelData
+	const row = archiveRestoreCurrentRowInfo.row.model_data
 	const archiveOrRestore = archiveRestoreCurrentRowInfo.config.trueToArchiveFalseToRestore
 	await fetch(railsAPIs.users.archiveRestoreUser(row.id, archiveOrRestore), {
 		method: "PATCH"
-	}).catch((error) => {
-		alert(getTranslationsFromRailsAPIErrorResponse({ i18n, error }).toString())
+	}).catch((response) => {
+		alert(getTranslationsFromRailsAPIErrorResponse({ i18n, response }).toString())
 	})
 	archiveRestoreCurrentRowInfo.triggerUpdateTable()
 	setTableBusy(false)
@@ -71,10 +74,10 @@ async function updateTable(updateTableInfo: EmitUpdateTable) {
 		body: dataQuery
 	})
 		.then((data: unknown) => {
-			usersList.value = data
+			usersList.value = data as UserList
 		})
-		.catch((error) => {
-			errorList.value = getTranslationsFromRailsAPIErrorResponse({ i18n, error })
+		.catch((response) => {
+			errorList.value = getTranslationsFromRailsAPIErrorResponse({ i18n, response })
 		})
 	setTableBusy(false)
 }
@@ -88,10 +91,10 @@ async function fetchFilters(/** updateFiltersInfo: EmitUpdateFilterOptions**/) {
 			method: "POST",
 			body: query
 		}).then((data: unknown) => {
-			filters.data = data
+			filters.data = data as FiltersModelAssociatedData
 		})
-			.catch((error) => {
-				errorList.value = getTranslationsFromRailsAPIErrorResponse({ i18n, error })
+			.catch((response: RailsAPIErrorResponse) => {
+				errorList.value = getTranslationsFromRailsAPIErrorResponse({ i18n, response })
 			})
 		setTableBusy(false)
 	}

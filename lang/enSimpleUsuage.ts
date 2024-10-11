@@ -21,7 +21,7 @@ export default defineI18nLocale((locale: string) => {
 	}
 })
 
-function fetchSomeTranslations(locale) {
+function fetchSomeTranslations(locale: string) {
 	// add async next to the fucntion
 	// await $fetch(`/api/someTranslations/${locale}`).then(res => res.data)
 	// Do something

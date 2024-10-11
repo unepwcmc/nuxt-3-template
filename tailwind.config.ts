@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 const fs = require("fs")
 const plugin = require("tailwindcss/plugin")
 const postcssJs = require("postcss-js")

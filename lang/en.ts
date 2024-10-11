@@ -12,6 +12,7 @@ export default defineI18nLocale((locale: string) => {
    * If you would like to change translations for a module then you can do like this.
    */
 	defaultUserManagementTranslations.wcmcModules.userManagement.signIn.buttons.azureSignIn = "WCMC Employee Sign In"
+	defaultUserManagementTranslations.wcmcModules.userManagement.passwordReset.successfullyRequestedPasswordReset = " ABC "
 	const translations = {
 		title: "WCMC Nuxt 3 Template",
 		someTranslations: fetchSomeTranslations(locale), // Example of how you can use this
@@ -73,7 +74,7 @@ function getDefaultUserManagementTranslations() {
 	const { getUserManagementTranslations } = useWcmcUserManagement()
 	return getUserManagementTranslations("en")
 }
-function fetchSomeTranslations(locale) {
+function fetchSomeTranslations(locale: string) {
 	// add async next to the fucntion
 	// await $fetch(`/api/someTranslations/${locale}`).then(res => res.data)
 	// Do something

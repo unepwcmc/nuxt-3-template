@@ -1,4 +1,4 @@
-// import { checker } from 'vite-plugin-checker'
+import { checker } from "vite-plugin-checker"
 
 /**
  * Do not put SITE_TITLE and SITE_DESCRIPTION in .env and use process.env.SITE_TITLE
@@ -9,14 +9,14 @@
  * becomes head: {title:'aaaaa'} when you run yarn build not head: {title: process.env.SITE_TITLE}
  * In short, if you have a different value on server it will not take effect
  */
-const SITE_TITLE = "PP Data Management Portal"
-const SITE_DESCRIPTION = "A WCMC data portal for managing ICCA/WDPA data"
+const SITE_TITLE = "Site title"
+const SITE_DESCRIPTION = "A WCMC Nuxt 3 template"
 export default defineNuxtConfig({
 	vite: {
 		plugins: [
-			// checker({
-			//   vueTsc: true
-			// })
+			checker({
+				vueTsc: true
+			})
 			/**
        * Install vite-plugin-checker
        * enable this to check typescript on run dev
@@ -49,17 +49,8 @@ export default defineNuxtConfig({
 		manifest: {
 			lang: "en"
 		},
-		meta: {
-			name: SITE_TITLE,
-			description: SITE_DESCRIPTION,
-			author: "WCMC"
-		},
 		disable: process.env.NODE_ENV !== "production",
-		register: true,
 		scope: "/",
-		dest: "public",
-		swSrc: "service-worker.js",
-		noscript: [{ children: "Javascript is required" }]
 	},
 	modules: [
 		"@vite-pwa/nuxt",
@@ -100,6 +91,8 @@ export default defineNuxtConfig({
 		},
 		configurationsPublic: {
 			enableAzureSignIn: true,
+			// This value has to be snyced with backend setup if backend allows a user to be signed in for 5 days then the value here MUST BE below/equal 5
+			stayLoggedInForHowManyDays: 2,
 			/**
 			 * Enable this to check if an user has policies to visit the page. see definePageMeta in /pages/admin/users.vue to know how this can be used
 			 * */
@@ -116,8 +109,6 @@ export default defineNuxtConfig({
 				signIn: "/en/sign-in",
 				signOut: "/en/sign-out",
 				error: "/en/sign-in",
-				passwordReset: { name: "password-reset" }, // Or /password-reset
-				viewUserRoles: { name: "admin-user-roles" }
 			}
 		}
 	},
@@ -125,6 +116,7 @@ export default defineNuxtConfig({
 		strategy: "prefix",
 		experimental: {
 			// https://v8.i18n.nuxtjs.org/options/misc#experimental in oder to use lazy load for en.ts
+			// @ts-expect-error nuxt error
 			jsTsFormatResource: true
 		},
 		locales: [
@@ -146,6 +138,7 @@ export default defineNuxtConfig({
 	},
 	build: {
 		// Do not create a ~/postcss.config.cjs file it will not work with Nuxt, instead put the config here
+		// @ts-expect-error this is an unknown nuxt error ?
 		postcss: {
 			plugins: {
 				"tailwindcss/nesting": {},

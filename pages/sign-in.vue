@@ -50,7 +50,7 @@ const callbackurl = computed(() => {
 	// to get callback path
 	try {
 		if (route.query?.callbackUrl) {
-			return new URL(route.query.callbackUrl)
+			return new URL(route.query.callbackUrl as string)
 		}
 	}
 	catch {

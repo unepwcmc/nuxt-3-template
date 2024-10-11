@@ -92,12 +92,6 @@ export function goodGovernance() {
 		]
 	}
 }
-export function defaultFormSchema(title, schema) {
-	return {
-		title,
-		schema
-	}
-}
 
 export const mettExample = {
 	assessment_type: "METT",

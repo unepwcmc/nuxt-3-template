@@ -1,16 +1,19 @@
 {
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "never",
-      "source.fixAll.eslint": "explicit",
-      "source.fixAll.stylelint": "explicit"
-    },
-  "stylelint.validate": ["vue", "css"],
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "javascript.format.insertSpaceAfterConstructor": true,
-  "tabnine.experimentalAutoImports": true,
-  "typescript.validate.enable": false,
-  "editor.quickSuggestions": {
-    "strings": true
-  }
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "vue"
+  ],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": [
+    "postcss",
+    "pcss",
+    "vue"
+  ],
 }
